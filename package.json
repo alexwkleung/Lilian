@@ -1,0 +1,30 @@
+{
+  "name": "lilian",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc --build",
+    "test": "node dist/fs-dir.js && node dist/post-list-fs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexwkleung/Lilian.git"
+  },
+  "author": "alexwkleung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexwkleung/Lilian/issues"
+  },
+  "homepage": "https://github.com/alexwkleung/Lilian#readme",
+  "devDependencies": {
+    "@types/node": "^18.16.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "eva-st-util": "github:alexwkleung/Eva-ST-Util",
+    "html-minifier-terser": "^7.2.0"
+  }
+}
