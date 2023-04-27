@@ -59,7 +59,13 @@ export function filterByExtension(dirArr: string[], extension: string): string[]
     return readDir.filter(mdFilter => [extension].some(end => mdFilter.endsWith(end)));
 }
 
-export function parseFile(path: string) {
+/**
+ * parseFile function
+ * 
+ * @param path The file to read from
+ * @returns The contents of the read file
+ */
+export function parseFile(path: string): string {
     try {
         const readFile = fs.readFileSync(path, 'utf-8');
 
@@ -68,14 +74,3 @@ export function parseFile(path: string) {
         throw console.error(error);
     }
 }
-
-//test
-/*
-const foo: string[] = readDirectory('posts');
-for(let i = 0; i < foo.length; i++) {
-    console.log(foo[i]);
-}
-
-//test
-console.log(removeExtension(filterByExtension(readDirectory('posts'), ".md")));
-*/

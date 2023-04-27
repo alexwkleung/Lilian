@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "clean": "tsc --build --clean",
-    "build": "tsc --build",
-    "test": "node dist/fs-dir.js && node dist/post-list-fs.js"
+    "build": "npm run clean && tsc --build",
+    "list": "node dist/post-fs.js"
   },
   "repository": {
     "type": "git",
