@@ -4,6 +4,8 @@ import path from 'path'
 /**
  * readDirectory function
  * 
+ * Read contents of a directory
+ * 
  * @param dirStr The directory to read from
  * @returns An array containing files from the directory
  */
@@ -23,6 +25,8 @@ export function readDirectory(dirStr: string): string[] {
 
 /**
  * removeExtension function
+ * 
+ * Remove extension from files 
  * 
  * @param dirArr An array containing files from a directory 
  * @returns An array that contains only the file names of the directory
@@ -46,8 +50,10 @@ export function removeExtension(dirArr: string[]): string[] {
 /**
  * filterByExtension function
  * 
+ * Filter directory files by extension
+ * 
  * @param dirArr An array containing content from a directory
- * @param extension The extension type to filter (i.e., `.md`)
+ * @param extension The extension type to filter (i.e., `.txt`)
  * @returns An array containing the filtered directory files based on `extension`
  */
 export function filterByExtension(dirArr: string[], extension: string): string[] {
@@ -55,13 +61,22 @@ export function filterByExtension(dirArr: string[], extension: string): string[]
 
     //see: https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
 
+    const dirFilter: string[] = readDir.filter(
+        (mdFilter: string): boolean => { 
+            return [extension].some((end: string): boolean => { 
+                return mdFilter.endsWith(end) 
+            })
+        });
+
     //return array containing filtered files based on extension
-    return readDir.filter(mdFilter => [extension].some(end => mdFilter.endsWith(end)));
+    return dirFilter;
 }
 
 /**
  * parseFile function
  * 
+ * Read a file from a directory
+ *  
  * @param path The file to read from
  * @returns The contents of the read file
  */
@@ -69,6 +84,7 @@ export function parseFile(path: string): string {
     try {
         const readFile = fs.readFileSync(path, 'utf-8');
 
+        //return content of read file
         return readFile;
     } catch(error) {
         throw console.error(error);

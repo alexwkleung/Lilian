@@ -2,16 +2,20 @@ import { readDirectory, removeExtension, filterByExtension, parseFile } from './
 import { EvaSTUtil } from 'eva-st-util'
 
 const markdownFiles: string[] = filterByExtension(readDirectory('posts'), ".md");
+const markdownFilesNoExt: string[] = removeExtension(markdownFiles);
+
 const markdownFilesLength: number = markdownFiles.length;
 
-export function postList(): string[] {
-    const dirLength: number = removeExtension(markdownFiles).length;
+console.log(markdownFiles);
 
-    console.log(dirLength);
+export function postList(): string[] {
+    const dirLength: number = markdownFilesNoExt.length;
+
+    //console.log(dirLength);
 
     let list: string[] = [];
 
-    const fileNames = removeExtension(markdownFiles);
+    const fileNames: string[] = markdownFilesNoExt;
 
     for(let i = 0; i < dirLength; i++) {
         list.push(`<li>${fileNames[i]}</li>`);
@@ -41,12 +45,11 @@ console.log(postList());
  * getRawFrontmatterData function
  * 
  * @param files An array containing Markdown files (i.e., `['foo.md', 'bar.md']`)
- * @param directory The directory that the Markdown files are located in (i.e., `'posts/'`)
+ * @param directory The directory that the Markdown files are located in (i.e., `'foo/'`)
  * @returns An array containing frontmatter data (i.e., `['title: foo', 'date: bar']`)
  */
 export function getRawFrontmatterData(files: string[], directory: string): string[] {
     let treeRef: string[] = [];
-
     let treeRefFm: string[] = [];
     
     //iterate over files
@@ -79,13 +82,13 @@ export function getRawFrontmatterData(files: string[], directory: string): strin
 
 //console.log(getFrontmatterData(markdownFiles, 'posts/'));
 
-export function formatFrontmatterData(files: string[], frontmatterData: string[]): string[][] {
-    const fmLength: number = files.length;
+export function formatFrontmatterData(frontmatterData: string[]): string[][] {
+    const fmLength: number = frontmatterData.length;
 
     let matrix: string[][] = [];
 
     for(let i = 0; i < fmLength; i++) {
-        matrix.push(getRawFrontmatterData(markdownFiles, 'posts/')[i].split('\n'));
+        matrix.push(frontmatterData[i].split('\n'));
     }
 
     //return matrix containing frontmatter data
@@ -94,6 +97,13 @@ export function formatFrontmatterData(files: string[], frontmatterData: string[]
 
 //console.log(formatFrontmatterData(getFrontmatterData(markdownFiles)));
 
+/**
+ * createPostMatrixData function
+ * 
+ * @param postMatrix A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
+ * @param directory The directory that the Markdown files are located in (i.e., `'foo/'`)
+ * @returns Matrix containing post data
+ */
 export function createPostMatrixData(postMatrix: string[][], directory: string): string[][] {
     const postData: string[][] = postMatrix;
 
@@ -116,7 +126,13 @@ export function createPostMatrixData(postMatrix: string[][], directory: string):
 
 //console.log(formatPostMatrixData()[0][2]);
 
-export function extractActualFrontmatterData(postData: string[][]): string[] {
+/**
+ * extractActualFrontmatterData 
+ * 
+ * @param postData A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
+ * @returns A matrix of the actual frontmatter data (i.e., `[['title: foo', 'date: bar']] => [['foo', 'bar']]`)
+ */
+export function extractActualFrontmatterData(postData: string[][])/*: string[]*/ {
     let createPostMatrixTemp: string[][] = postData;
     
     let splitArrTemp: string[][] = [];
@@ -129,8 +145,9 @@ export function extractActualFrontmatterData(postData: string[][]): string[] {
         }
     }
 
+    //console.log(splitArrTemp);
+
     let noEmptyStrTemp: string[] = [];
-    
     let noEmptyStr: string[] = [];
 
     for(let i = 0; i < splitArrTemp.length; i++) {
@@ -149,6 +166,8 @@ export function extractActualFrontmatterData(postData: string[][]): string[] {
         }
     }
     
+    //console.log(splitArr);
+
     for(let i = 0; i < splitArr.length; i++) {
         for(let j = 0; j < splitArr[i].length; j++) {
             if(splitArr[i][j] != '') {
@@ -157,21 +176,58 @@ export function extractActualFrontmatterData(postData: string[][]): string[] {
         }
     }
 
-    let actualFmData: string[] = [];
+    //console.log(noEmptyStr);
 
-    //assign reference of noEmptyStr to actualFmData
-    actualFmData = noEmptyStr;
+    let actual: string[][] = [];
 
-    //console.log(noEmpty);
+    let actualFmTemp: string[][] = [];
 
-    //return actual frontmatter data
+    for(let i = 0; i < noEmptyStr.length; i++) {
+        if(i % 2 === 0) {
+            let temp: string[] = [];
+            temp.push(noEmptyStr[i]);
+
+            actualFmTemp.push(temp);
+        }
+    }
+
+    //console.log(actualFmTemp);
+
+    let dateFm: string[] = [];
+
+    for(let i = 0; i < noEmptyStr.length; i++) {
+        if(i % 2 === 1) {
+            dateFm.push(noEmptyStr[i]);
+        }
+    }
+    //console.log(actual);
+    //console.log(dateFm);
+
+    for(let i = 0; i < actualFmTemp.length; i++) {
+        //use same index value since we assume that each index value correlates in parallel
+        actualFmTemp[i].push(dateFm[i]);
+    }
+    //console.log(actualFmTemp);
+
+    let actualFmData: string[][] = [];
+
+    //assign reference of noEmptyStr to actualFmTemp
+    actualFmData = actualFmTemp;
+
+    //return array of actual frontmatter data
     return actualFmData;
 }
 
+/*
+console.log(createPostMatrixData(
+    formatFrontmatterData(
+        getRawFrontmatterData(markdownFiles, 'posts/')
+    ), 
+    'posts/'));
+*/
 console.log(extractActualFrontmatterData(
     createPostMatrixData(
         formatFrontmatterData(
-            getRawFrontmatterData(markdownFiles, 'posts/'), 
             getRawFrontmatterData(markdownFiles, 'posts/')
         ), 
         'posts/'
@@ -179,9 +235,3 @@ console.log(extractActualFrontmatterData(
 );
 
 //console.log(formatPostMatrixData(formatFrontmatterData(getFrontmatterData(markdownFiles)))[0][1]);
-console.log(createPostMatrixData(
-    formatFrontmatterData(
-        getRawFrontmatterData(markdownFiles, 'posts/'), 
-        getRawFrontmatterData(markdownFiles, 'posts/')
-    ), 
-    'posts/'));
