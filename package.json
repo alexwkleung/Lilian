@@ -8,7 +8,7 @@
     "clean": "tsc --build --clean",
     "build-c": "npm run clean && npx tsc --build",
     "build": "tsc --build",
-    "list": "node dist/post-fs.js"
+    "list": "node dist/post-fs-util.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "eva-st-util": "github:alexwkleung/Eva-ST-Util",
-    "fs-dir": "github:alexwkleung/fs-dir",
-    "html-minifier-terser": "^7.2.0"
+    "fs-dir": "github:alexwkleung/fs-dir"
   }
 }
