@@ -8,7 +8,8 @@
     "clean": "tsc --build --clean",
     "build-c": "npm run clean && npx tsc --build",
     "build": "tsc --build",
-    "list": "node dist/post-fs-util.js"
+    "lilian": "node dist/lilian.js",
+    "dev": "vite --host"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,14 @@
   },
   "homepage": "https://github.com/alexwkleung/Lilian#readme",
   "devDependencies": {
+    "@types/html-minifier-terser": "^7.0.0",
     "@types/node": "^18.16.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vite": "^4.3.3"
   },
   "dependencies": {
     "eva-st-util": "github:alexwkleung/Eva-ST-Util",
-    "fs-dir": "github:alexwkleung/fs-dir"
+    "fs-dir": "github:alexwkleung/fs-dir",
+    "html-minifier-terser": "^7.2.0"
   }
 }

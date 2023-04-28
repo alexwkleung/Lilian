@@ -4,4 +4,16 @@ clean:
 
 .PHONY: build
 build:
-	npm run clean && npm run build
+	npm run build
+
+.PHONY: build-c
+build-c:
+	npm run build-c
+
+.PHONY: lilian
+lilian: 
+	npm run lilian
+
+.PHONY: dev
+dev:
+	npm run dev
