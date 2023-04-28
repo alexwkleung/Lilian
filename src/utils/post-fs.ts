@@ -1,5 +1,6 @@
-import { readDirectory, removeExtension, filterByExtension, parseFile } from './fs-dir.js'
 import { EvaSTUtil } from 'eva-st-util'
+import { readDirectory, removeExtension, filterByExtension, parseFile } from 'fs-dir'
+import fs from 'fs'
 
 const markdownFiles: string[] = filterByExtension(readDirectory('posts'), ".md");
 const markdownFilesNoExt: string[] = removeExtension(markdownFiles);
@@ -8,7 +9,12 @@ const markdownFilesLength: number = markdownFiles.length;
 
 console.log(markdownFiles);
 
-export function postList(): string[] {
+/**
+ * postListTags function
+ * 
+ * @returns An array containing list tags with the post title
+ */
+export function getPostListTags(): string[] {
     const dirLength: number = markdownFilesNoExt.length;
 
     //console.log(dirLength);
@@ -17,14 +23,14 @@ export function postList(): string[] {
 
     const fileNames: string[] = markdownFilesNoExt;
 
+    /*
     for(let i = 0; i < dirLength; i++) {
-        list.push(`<li>${fileNames[i]}</li>`);
+        list.push(`<li class="post-list">${fileNames[i]}</li>`);
         //console.log(list[i]);
 
         //list.push(fileNames[i]);
 
         //check if the searched index for character '-' in file name is found
-        /*
         if(fileNames[i].indexOf('-') > -1) {
             list.push(`<li>${fileNames[i]}</li>`);
         //else, check if the searched index for character '-' in file name is not found
@@ -32,21 +38,21 @@ export function postList(): string[] {
             list.unshift(`<li>${fileNames[i]}</li>`);
             //console.log(fileNames[i]);
         }
-        */
     }
+    */
 
     //return list
     return list;
 }
 
-console.log(postList());
+//console.log(getPostListTags());
 
 /**
  * getRawFrontmatterData function
  * 
  * @param files An array containing Markdown files (i.e., `['foo.md', 'bar.md']`)
  * @param directory The directory that the Markdown files are located in (i.e., `'foo/'`)
- * @returns An array containing frontmatter data (i.e., `['title: foo', 'date: bar']`)
+ * @returns An array containing frontmatter data (i.e., `['title: foo\ndate: bar']`)
  */
 export function getRawFrontmatterData(files: string[], directory: string): string[] {
     let treeRef: string[] = [];
@@ -80,8 +86,14 @@ export function getRawFrontmatterData(files: string[], directory: string): strin
     return treeRefFm;
 }
 
-//console.log(getFrontmatterData(markdownFiles, 'posts/'));
+//console.log(getRawFrontmatterData(markdownFiles, 'posts/'));
 
+/**
+ * formatFrontmatterData function
+ * 
+ * @param frontmatterData An array containing frontmatter (i.e., `['title: foo\ndate: bar']`)
+ * @returns A matrix containing formatted frontmatter data (i.e., `[['title: foo', 'date: bar']]`)
+ */
 export function formatFrontmatterData(frontmatterData: string[]): string[][] {
     const fmLength: number = frontmatterData.length;
 
@@ -98,13 +110,13 @@ export function formatFrontmatterData(frontmatterData: string[]): string[][] {
 //console.log(formatFrontmatterData(getFrontmatterData(markdownFiles)));
 
 /**
- * createPostMatrixData function
+ * createRawPostDataMatrix function
  * 
  * @param postMatrix A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
  * @param directory The directory that the Markdown files are located in (i.e., `'foo/'`)
  * @returns Matrix containing post data
  */
-export function createPostMatrixData(postMatrix: string[][], directory: string): string[][] {
+export function createRawPostDataMatrix(postMatrix: string[][], directory: string): string[][] {
     const postData: string[][] = postMatrix;
 
     let mdFilesIndex: number = 0;
@@ -127,12 +139,12 @@ export function createPostMatrixData(postMatrix: string[][], directory: string):
 //console.log(formatPostMatrixData()[0][2]);
 
 /**
- * extractActualFrontmatterData 
+ * extractActualFrontmatterData function
  * 
  * @param postData A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
  * @returns A matrix of the actual frontmatter data (i.e., `[['title: foo', 'date: bar']] => [['foo', 'bar']]`)
  */
-export function extractActualFrontmatterData(postData: string[][])/*: string[]*/ {
+export function extractActualFrontmatterData(postData: string[][]): string[][] {
     let createPostMatrixTemp: string[][] = postData;
     
     let splitArrTemp: string[][] = [];
@@ -178,8 +190,6 @@ export function extractActualFrontmatterData(postData: string[][])/*: string[]*/
 
     //console.log(noEmptyStr);
 
-    let actual: string[][] = [];
-
     let actualFmTemp: string[][] = [];
 
     for(let i = 0; i < noEmptyStr.length; i++) {
@@ -218,20 +228,124 @@ export function extractActualFrontmatterData(postData: string[][])/*: string[]*/
     return actualFmData;
 }
 
+export function createHtmlFileNames(fileNameNoExt: string[]): string[] {
+    let htmlFiles: string[] = [];
+
+    for(let i = 0; i < fileNameNoExt.length; i++) {
+        //console.log(markdownFilesNoExt[i]);
+    
+        //assigned value to temp is markdown file name + concatenated .html extension
+        const temp: string = fileNameNoExt[i] + ".html";
+
+        htmlFiles.push(temp);
+    }
+
+    //console.log(htmlFiles);
+
+    //return array of html file names based on markdown files
+    return htmlFiles;
+}
+
+console.log(createHtmlFileNames(markdownFiles));
+
+const htmlFiles = createHtmlFileNames(markdownFiles);
+
+export function createPostDataMatrix(
+    frontmatterMatrixData: string[][], 
+    rawMatrixData: string[][], 
+    markdownFileNames: string[], 
+    htmlFileNames: string[]
+    ): string[][] {     
+    let postMatrix: string[][] = [];
+    let postData: string[] = [];
+
+    for(let i = 0; i < rawMatrixData.length; i++) {
+        //console.log(rawMatrixData[i][2]);
+        postData.push(rawMatrixData[i][2])
+    }
+    //console.log(postData);
+
+    for(let i = 0; i < frontmatterMatrixData.length; i++) {
+        frontmatterMatrixData[i].push(postData[i]);
+        frontmatterMatrixData[i].push(markdownFileNames[i]);
+        frontmatterMatrixData[i].push(htmlFileNames[i]);
+    }
+    //console.log(postData);
+    //console.log(frontmatterMatrixData);
+    
+    //assign reference of frontmatterMatrixData to postMatrix
+    postMatrix = frontmatterMatrixData;
+
+    //return a matrix containing post data
+    return postMatrix;
+}
+
 /*
-console.log(createPostMatrixData(
+console.log(createRawPostDataMatrix(
     formatFrontmatterData(
         getRawFrontmatterData(markdownFiles, 'posts/')
     ), 
     'posts/'));
-*/
+
 console.log(extractActualFrontmatterData(
-    createPostMatrixData(
+    createRawPostDataMatrix(
         formatFrontmatterData(
             getRawFrontmatterData(markdownFiles, 'posts/')
         ), 
         'posts/'
     ))
-);
+);  
+*/
 
-//console.log(formatPostMatrixData(formatFrontmatterData(getFrontmatterData(markdownFiles)))[0][1]);
+//create a matrix containing all of the posts' data
+//the returned matrix is an important structure of the post data
+//it is initially sorted based on the (unknown) order of how the file system reads the directory
+//if you want to sort by title, date, etc, then you will need to implement the sorting algorithm with any method you like
+console.log(createPostDataMatrix(
+    extractActualFrontmatterData(
+        createRawPostDataMatrix(
+            formatFrontmatterData(
+                getRawFrontmatterData(markdownFiles, 'posts/')
+            ), 
+        'posts/'
+    )), 
+    createRawPostDataMatrix(
+        formatFrontmatterData(
+            getRawFrontmatterData(markdownFiles, 'posts/')
+            ), 
+        'posts/'
+    ),
+    markdownFiles,
+    createHtmlFileNames(markdownFilesNoExt)
+));
+
+
+export function writeToFile(path: string, data: string) {
+    const write = fs.writeFile(path, data, (error) => {
+        if(error) {
+            console.error(error);
+        }
+    });
+}
+
+const postDataMatrixLength: number = createPostDataMatrix(
+    extractActualFrontmatterData(
+        createRawPostDataMatrix(
+            formatFrontmatterData(
+                getRawFrontmatterData(markdownFiles, 'posts/')
+            ), 
+        'posts/'
+    )), 
+    createRawPostDataMatrix(
+        formatFrontmatterData(
+            getRawFrontmatterData(markdownFiles, 'posts/')
+            ), 
+        'posts/'
+    ),
+    markdownFiles,
+    createHtmlFileNames(markdownFilesNoExt)
+).length;
+
+for(let i = 0; i < postDataMatrixLength; i++) {
+    
+}
