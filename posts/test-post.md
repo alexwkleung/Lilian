@@ -1,6 +1,6 @@
 ---
 title: Test Post
-date: Apr 25th, 2023
+date: Feb 5, 2023
 ---
 
 # Lorem Ipsum 3

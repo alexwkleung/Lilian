@@ -1,6 +1,6 @@
 ---
 title: Post
-date: Apr 25th, 2023
+date: Mar 24, 2023
 ---
 
 # Lorem Ipsum 1

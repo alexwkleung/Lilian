@@ -21,6 +21,40 @@ const cssLink: string = "../styles/style.css";
 const cssHighlightLink: string = "../styles/hljs/github-dark.min.css";
 
 /**
+ * sortPostDataMatrix function
+ * 
+ * @param postData A matrix containing post data
+ * @returns Sorted matrix containing post data
+ */
+export function sortPostDataMatrix(postData: string[][]): string[][] {
+    let sortedPostDataMatrix: string[][] = [];
+
+    //use Date.parse() to compare milliseconds of the date string from matrix --> [row][1]
+
+    //let curr: string = postData[0][1];
+
+    for(let i = 0; i < postData.length; i++) {
+        for(let j = 0; j < postData[i].length; j++) {
+
+        }
+        //console.log(postData[i + 1][1])
+        /*
+        if(Date.parse(postData[i][1]) > Date.parse(postData[i + 1][1])) {
+            let temp: string = postData[i][1];
+
+            postData[i][1] = postData[i + 1][1];
+
+            postData[i + 1][1] = temp;
+        }
+        */
+    }
+
+    sortedPostDataMatrix = postData;
+
+    return sortedPostDataMatrix;
+}
+
+/**
  * postListTags function
  * 
  * @param postData A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
@@ -61,13 +95,21 @@ export function createPostListHtmlTemplate(title: string, postListTags: string[]
             <title>${title}</title>
         </head>
         <body>
-            ${postListTags.map((i): string => i + '\n').join('')}
+            <div id="list-container">
+                ${postListTags.map((i): string => i + '\n').join('')}
+            </div>
         </body>
         </html>`;
 
     return template;
 }
 
+/**
+ * createPostHtmlTemplate function
+ * 
+ * @param postDataMatrix A matrix containing post data (i.e., `[['title: foo', 'date: bar', '<p>baz</p>']]`)
+ * @returns An array containing HTML templates of each post
+ */
 export function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
     let postTitle: string[] = [];
 
@@ -83,7 +125,7 @@ export function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
 
     let template: string[] = [];
 
-    for(let i = 0; i < postTitle.length || i < postData.length; i++) {
+    for(let i = 0; i < postTitle.length && i < postData.length; i++) {
         template.push(`
         <!DOCTYPE html>
         <html lang="en">
@@ -154,6 +196,7 @@ export function formatFrontmatterData(frontmatterData: string[]): string[][] {
     let matrix: string[][] = [];
 
     for(let i = 0; i < fmLength; i++) {
+        //split index value of string containing '\n'
         matrix.push(frontmatterData[i].split('\n'));
     }
 
@@ -267,7 +310,7 @@ export function extractActualFrontmatterData(postData: string[][]): string[][] {
         }
     }
 
-    for(let i = 0; i < actualFmTemp.length || i < dateFm.length; i++) {
+    for(let i = 0; i < actualFmTemp.length && i < dateFm.length; i++) {
         //actualFmTemp and dateFm have same length, so use the same index to access in parallel
         //actualFmTemp contains the array with all frontmatter data of the posts
         actualFmTemp[i].push(dateFm[i]);
@@ -325,7 +368,7 @@ export function createPostDataMatrix(
         postData.push(rawMatrixData[i][2])
     }
 
-    for(let i = 0; i < frontmatterMatrixData.length; i++) {
+    for(let i = 0; i < frontmatterMatrixData.length && markdownFileNames.length && htmlFileNames.length; i++) {
         //frontmatterMatrixData contains title and date initially
         //assume all arrays (1d or 2d) are the same length and all indices correlate linearly
 

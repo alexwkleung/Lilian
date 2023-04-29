@@ -12,7 +12,8 @@ import {
     getRawFrontmatterData, 
     htmlFiles,
     markdownFiles,
-    markdownFilesNoExt
+    markdownFilesNoExt,
+    sortPostDataMatrix
 } from "./post-fs-util.js";
 
 //create post data matrix
@@ -42,3 +43,6 @@ createHtmlPostListFile(
     'src/post-list/post-list.min.html', 
     createPostListHtmlTemplate("Lilian", getPostListTags(postDataMatrix, '../html-posts/', htmlFiles))
 );
+
+//console.log(sortPostDataMatrix(postDataMatrix));
+console.log(postDataMatrix);
