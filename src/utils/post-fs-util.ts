@@ -17,17 +17,20 @@ export const htmlFiles = createHtmlFileNames(markdownFilesNoExt);
 //stylesheet link
 const cssLink: string = "../styles/style.css";
 
+//hljs stylesheet 
+const cssHighlightLink: string = "../styles/hljs/github-dark.min.css";
+
 /**
  * postListTags function
  * 
- * @param postDataMatrix A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
+ * @param postData A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
  * @returns An array containing list tags with the post title which links to the respective html file
  */
 export function getPostListTags(postData: string[][], directory: string, htmlFileName: string[]): string[] {
     let list: string[] = [];
 
     for(let i = 0; i < postData.length; i++) {
-        let temp: string = `<li class="post-li"><a class="post-link" href="${directory}${htmlFileName[i]}">${postData[i][0]}</a></li>`;
+        let temp: string = `<li class="post-li"><a class="post-link" href="${directory}${htmlFileName[i]}">${postData[i][0]}</a><br><div class="post-date">${postData[i][1]}</div></li>`;
 
         list.push(temp);
     }
@@ -89,6 +92,9 @@ export function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="${cssLink}">
+            <link rel="stylesheet" href="${cssHighlightLink}">
+            <script src="./scripts/highlight.min.js"></script>
+            <script>hljs.highlightAll();</script>
             <title>${postTitle[i]}</title>
         </head>
         <body>
