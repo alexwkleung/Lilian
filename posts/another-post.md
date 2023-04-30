@@ -1,6 +1,6 @@
 ---
-title: Another Post
-date: Jan 26, 2023
+title: A Test Post
+date: Sep 26, 2020
 ---
 
 # Heading 1
@@ -11,9 +11,28 @@ test test.
 
 ```typescript
 function f(): void {
-    console.log("foo");
+    console.log("foo"); //foo
 }
 f();
+```
+
+```cpp
+#include <iostream>
+#include <vector>
+
+void f() {
+    std::vector<int> vec = { 1, 2 };
+
+    for(std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++) {
+        std::cout << *it << '\n'; //1 2
+    }
+}
+
+int main() {
+    f();
+
+    return 0;
+}
 ```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim placerat sodales. Ut luctus sapien in leo semper, non pretium enim pulvinar. Cras eu aliquam nulla, quis porttitor metus. Suspendisse fringilla sodales nisi quis tincidunt. Nunc hendrerit dignissim magna. Phasellus pretium sollicitudin odio ut consequat. Proin id convallis ante. Cras eu viverra risus, ac vulputate elit. Vestibulum leo libero, sollicitudin et fringilla quis, posuere non leo. Sed id nulla at mi imperdiet aliquam.

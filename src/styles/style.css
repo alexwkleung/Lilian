@@ -1,3 +1,9 @@
+/* 
+Stylesheet for Lilian.
+
+This is the only entrypoint for styling your blog using Lilian.
+*/
+
 @font-face {
     font-family: 'Inter-Regular';
     src: url('./fonts/Inter-Regular.ttf');
@@ -23,6 +29,15 @@ body {
 }
 
 /* post */
+
+article {
+    border-style: 1px hidden;
+    border-color: black;
+    width: 1050px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
 p {
     color: black;
     font-size: 17px;
@@ -35,9 +50,11 @@ a {
     font-family: 'Inter-Regular', sans-serif;
 }
 
+/*
 span { 
     color: black;
 }
+*/
 
 pre code {
     color: black;
@@ -118,8 +135,9 @@ table, th, td {
 
 strong {
     color: black;
-    font-size: 17.5px;
+    font-size: 17px;
     font-family: 'Inter-Regular', sans-serif;
+    text-decoration: underline;
 }
 
 details summary {
@@ -146,16 +164,12 @@ details summary > * {
     display: inline;
 }
 
-article {
-    border-style: 1px hidden;
-    border-color: black;
-    width: 1050px;
-    margin: 0 auto;
-    padding-top: 50px;
-}
-
 code {
-    font-size: 14px;
+    font-size: 17px;
+    border-radius: 6px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: rgb(212, 209, 209);
 }
 
 /* post list */
@@ -165,11 +179,17 @@ code {
     border-color: black;
     width: 500px;
     margin: 0 auto;
-    padding-top: 60px;
+    padding-top: 50px;
+    overflow-y: scroll;
+    font-family: 'Inter-Regular', sans-serif;   
+    font-size: 19px;
 }
 
 .post-li {
     list-style: none;
     padding-top: 20px;
-    font-family: 'Inter-Regular', sans-serif;
+}
+
+.post-date {
+    font-size: 15px;
 }

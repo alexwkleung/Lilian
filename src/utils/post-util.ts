@@ -27,44 +27,44 @@ const cssHighlightLink: string = "../styles/hljs/github-dark.min.css";
  * @returns Sorted matrix containing post data
  */
 export function sortPostDataMatrix(postData: string[][]): string[][] {
-    let sortedPostDataMatrix: string[][] = [];
-
-    //use Date.parse() to compare milliseconds of the date string from matrix --> [row][1]
-
-    //let curr: string = postData[0][1];
-
-    for(let i = 0; i < postData.length; i++) {
-        for(let j = 0; j < postData[i].length; j++) {
-
+    for(let i = 1; i < postData.length; i++) {
+        for(let j = 0; j < postData.length - i; j++) {
+            //use bubble sort algorithm to compare dates
+            //Date.parse() returns milliseconds of the parsed date, which is used for comparison
+            //we compare (curr < next) instead of (curr > next) since we want to end with the
+            //date order from latest to oldest
+            if(Date.parse(postData[j][1]) < Date.parse(postData[j + 1][1])) {
+                //set current row to temp
+                let temp = postData[j];
+    
+                //assign next row to current row --> (swap)
+                postData[j] = postData[j + 1];
+    
+                //assign temp row to next row --> (swap)
+                postData[j + 1] = temp;
+            } else {
+                //if curr > next, continue to the next iteration
+                continue;
+            }
         }
-        //console.log(postData[i + 1][1])
-        /*
-        if(Date.parse(postData[i][1]) > Date.parse(postData[i + 1][1])) {
-            let temp: string = postData[i][1];
-
-            postData[i][1] = postData[i + 1][1];
-
-            postData[i + 1][1] = temp;
-        }
-        */
     }
 
-    sortedPostDataMatrix = postData;
-
-    return sortedPostDataMatrix;
+    //return sorted post data matrix
+    return postData;
 }
 
 /**
  * postListTags function
  * 
  * @param postData A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
- * @returns An array containing list tags with the post title which links to the respective html file
+ * @param directory The directory that the HTML files are located in (i.e., `'foo/'`)
+ * @returns An array containing list tags with the post title which links to the respective HTML file
  */
-export function getPostListTags(postData: string[][], directory: string, htmlFileName: string[]): string[] {
+export function getPostListTags(postData: string[][], directory: string): string[] {
     let list: string[] = [];
 
     for(let i = 0; i < postData.length; i++) {
-        let temp: string = `<li class="post-li"><a class="post-link" href="${directory}${htmlFileName[i]}">${postData[i][0]}</a><br><div class="post-date">${postData[i][1]}</div></li>`;
+        let temp: string = `<li class="post-li"><a class="post-link" href="${directory}${postData[i][4]}">${postData[i][0]}</a><br><div class="post-date">${postData[i][1]}</div></li>`;
 
         list.push(temp);
     }

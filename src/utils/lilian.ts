@@ -14,10 +14,10 @@ import {
     markdownFiles,
     markdownFilesNoExt,
     sortPostDataMatrix
-} from "./post-fs-util.js";
+} from "./post-util.js";
 
-//create post data matrix
-const postDataMatrix = createPostDataMatrix(
+//create post data matrix (sorted)
+const postDataMatrix = sortPostDataMatrix(createPostDataMatrix(
     extractActualFrontmatterData(
         createRawPostDataMatrix(
             formatFrontmatterData(
@@ -33,7 +33,7 @@ const postDataMatrix = createPostDataMatrix(
     ),
     markdownFiles,
     createHtmlFileNames(markdownFilesNoExt)
-);
+));
 
 //create post files
 createHtmlPostFiles('src/html-posts/', postDataMatrix, createPostHtmlTemplate(postDataMatrix));
@@ -41,8 +41,8 @@ createHtmlPostFiles('src/html-posts/', postDataMatrix, createPostHtmlTemplate(po
 //create post list file
 createHtmlPostListFile(
     'src/post-list/post-list.min.html', 
-    createPostListHtmlTemplate("Lilian", getPostListTags(postDataMatrix, '../html-posts/', htmlFiles))
+    createPostListHtmlTemplate("Lilian", getPostListTags(postDataMatrix, '../html-posts/'))
 );
 
 //console.log(sortPostDataMatrix(postDataMatrix));
-console.log(postDataMatrix);
+//console.log(postDataMatrix);
