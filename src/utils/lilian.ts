@@ -10,7 +10,7 @@ import {
 
 try {
     //create index file
-    createHtmlIndexFile();
+    createHtmlIndexFile("Lilian");
 
     //create post files
     createHtmlPostFiles('src/html-posts/', postDataMatrix, createPostHtmlTemplate(postDataMatrix));
@@ -18,11 +18,11 @@ try {
     //create post list file
     createHtmlPostListFile(
         'src/post-list/post-list.min.html', 
-        createPostListHtmlTemplate("Lilian", getPostListTags(postDataMatrix, '../html-posts/'))
+        createPostListHtmlTemplate("Posts", getPostListTags(postDataMatrix, '../html-posts/'))
     );
 
     //once all functions are executed, log success
-    console.log("Lilian: Executed successfully!");
+    console.log("[Lilian]: Executed successfully!");
 
 //if some exception is thrown
 } catch(error) {

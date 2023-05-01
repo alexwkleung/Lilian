@@ -32,8 +32,9 @@ date: Apr 29, 2023
 
     5. Create HTML template strings (index, posts, post list, etc). 
 
-    6. Make sure generated HTML files are minified using html-minifier-terser. Generated HTML files shouldn't be modified directly.
+    6. Generated HTML files are minified using html-minifier-terser.
 
-    7. Using functions from [fs-dir](https://github.com/alexwkleung/fs-dir) allows executing file system operations with ease. Filtering and removing extensions were helpful.
+    7. Using functions from [fs-dir](https://github.com/alexwkleung/fs-dir) allows executing file system operations with ease, such as filtering and removing file extensions.
 
-    In the upcoming updates to Lilian, I plan on refactoring the post util so that it is more efficient. While the parsing speed may not be a concern due to everything done locally, the code is quite inefficient regardless.
+    In the upcoming updates to Lilian, I plan on refactoring the post util so that it's more efficient. While the parsing speed may not be a concern due to everything being done locally, the code is quite inefficient regardless.
+

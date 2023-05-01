@@ -12,7 +12,7 @@ const markdownFilesLength: number = filterByExtension(readDirectory('posts'), ".
 const markdownFilesNoExt: string[] = removeExtension(markdownFiles);
 
 //html file names (with extension)
-const htmlFiles = createHtmlFileNames(markdownFilesNoExt);
+const htmlFiles: string[] = createHtmlFileNames(markdownFilesNoExt);
 
 //post elements interface
 interface postElemT {
@@ -25,7 +25,8 @@ interface postElemT {
 interface indexElemT {
     cssIndexLink: string,
     cssIndexHighlightLink: string,
-    jsIndexHighlightLink: string
+    jsIndexHighlightLink: string,
+    title: string
 }
 
 const postElements: postElemT = {
@@ -95,7 +96,7 @@ export function getPostListTags(postData: string[][], directory: string): string
  * 
  * @param title Document title
  * @param postListTags An array containing post list tags (i.e., `['<li>foo</li>', '<li>bar</li>']`)
- * @returns 
+ * @returns An HTML template for post list
  */
 export function createPostListHtmlTemplate(title: string, postListTags: string[]): string {
     //iterate over array in template literal with map: 
@@ -112,6 +113,10 @@ export function createPostListHtmlTemplate(title: string, postListTags: string[]
             <title>${title}</title>
         </head>
         <body>
+            <div id="post-list-h1-container">
+                <h1>Posts</h1>
+            </div>
+
             <div id="list-container">
                 ${postListTags.map((i): string => i + '\n').join('')}
             </div>
@@ -445,7 +450,7 @@ export async function createHtmlPostListFile(directory: string, postListTemplate
  * @async
  * @returns Resolved promise for minified index template (writes minified template to file)
  */
-export async function createHtmlIndexFile(): Promise<void> {
+export async function createHtmlIndexFile(title: string): Promise<void> {
     const indexElements: indexElemT = {
         //stylesheet (index)
         cssIndexLink: "src/styles/style.css",
@@ -453,6 +458,8 @@ export async function createHtmlIndexFile(): Promise<void> {
         cssIndexHighlightLink:  "src/styles/hljs/github-dark.min.css",
         //hljs script (index)
         jsIndexHighlightLink: "src/html-posts/scripts/highlight.min.js",
+        //title (index)
+        title: title
     }
 
     let template: string = `
@@ -466,7 +473,7 @@ export async function createHtmlIndexFile(): Promise<void> {
             <link rel="stylesheet" href="${indexElements.cssIndexHighlightLink}">
             <script src=${indexElements.jsIndexHighlightLink}></script>
             <script>hljs.highlightAll();</script>
-            <title></title>
+            <title>${indexElements.title}</title>
         </head>
         <body>
             <article>
