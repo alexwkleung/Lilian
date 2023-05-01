@@ -3,22 +3,39 @@ import { readDirectory, removeExtension, filterByExtension, parseFile, writeToFi
 import { minifyHtml } from './minify-html-util.js'
 
 //markdown file names (with extension)
-export const markdownFiles: string[] = filterByExtension(readDirectory('posts'), ".md");
+const markdownFiles: string[] = filterByExtension(readDirectory('posts'), ".md");
 
 //markdown files length
-export const markdownFilesLength: number = filterByExtension(readDirectory('posts'), ".md").length;
+const markdownFilesLength: number = filterByExtension(readDirectory('posts'), ".md").length;
 
 //markdown file names (with no extension)
-export const markdownFilesNoExt: string[] = removeExtension(markdownFiles);
+const markdownFilesNoExt: string[] = removeExtension(markdownFiles);
 
 //html file names (with extension)
-export const htmlFiles = createHtmlFileNames(markdownFilesNoExt);
+const htmlFiles = createHtmlFileNames(markdownFilesNoExt);
 
-//stylesheet link
-const cssLink: string = "../styles/style.css";
+//post elements interface
+interface postElemT {
+    cssPostLink: string,
+    cssPostHighlightLink: string,
+    jsPostHighlightLink: string
+}
 
-//hljs stylesheet 
-const cssHighlightLink: string = "../styles/hljs/github-dark.min.css";
+//index elements interface
+interface indexElemT {
+    cssIndexLink: string,
+    cssIndexHighlightLink: string,
+    jsIndexHighlightLink: string
+}
+
+const postElements: postElemT = {
+    //stylesheet (post)
+    cssPostLink: "../styles/style.css",
+    //hljs stylesheet (post)
+    cssPostHighlightLink: "../styles/hljs/github-dark.min.css",
+    //hljs script (post)
+    jsPostHighlightLink: "./scripts/highlight.min.js"
+}
 
 /**
  * sortPostDataMatrix function
@@ -27,15 +44,15 @@ const cssHighlightLink: string = "../styles/hljs/github-dark.min.css";
  * @returns Sorted matrix containing post data
  */
 export function sortPostDataMatrix(postData: string[][]): string[][] {
+    //use bubble sort algorithm to compare dates
     for(let i = 1; i < postData.length; i++) {
         for(let j = 0; j < postData.length - i; j++) {
-            //use bubble sort algorithm to compare dates
             //Date.parse() returns milliseconds of the parsed date, which is used for comparison
             //we compare (curr < next) instead of (curr > next) since we want to end with the
             //date order from latest to oldest
             if(Date.parse(postData[j][1]) < Date.parse(postData[j + 1][1])) {
                 //set current row to temp
-                let temp = postData[j];
+                let temp: string[] = postData[j];
     
                 //assign next row to current row --> (swap)
                 postData[j] = postData[j + 1];
@@ -91,7 +108,7 @@ export function createPostListHtmlTemplate(title: string, postListTags: string[]
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="${cssLink}">
+            <link rel="stylesheet" href="${postElements.cssPostLink}">
             <title>${title}</title>
         </head>
         <body>
@@ -133,9 +150,9 @@ export function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="${cssLink}">
-            <link rel="stylesheet" href="${cssHighlightLink}">
-            <script src="./scripts/highlight.min.js"></script>
+            <link rel="stylesheet" href="${postElements.cssPostLink}">
+            <link rel="stylesheet" href="${postElements.cssPostHighlightLink}">
+            <script src=${postElements.jsPostHighlightLink}></script>
             <script>hljs.highlightAll();</script>
             <title>${postTitle[i]}</title>
         </head>
@@ -238,16 +255,16 @@ export function createRawPostDataMatrix(postMatrix: string[][], directory: strin
  * @returns A matrix of the actual frontmatter data (i.e., `[['foo', 'bar']]`)
  */
 export function extractActualFrontmatterData(postData: string[][]): string[][] {
-    let createPostMatrixTemp: string[][] = postData;
+    let createPostMatrixRef: string[][] = postData;
     
     let splitArrTemp: string[][] = [];
     let splitArr: string[][] = [];
 
-    for(let i = 0; i < createPostMatrixTemp.length; i++) {
+    for(let i = 0; i < createPostMatrixRef.length; i++) {
         //frontmatter data is only title and date, therefore iterate 2 times
         for(let j = 0; j < 2; j++) {
             //split index value of string containing 'title: ' 
-            let temp: string[] = createPostMatrixTemp[i][j].split('title:' + ' ');
+            let temp: string[] = createPostMatrixRef[i][j].split('title:' + ' ');
 
             //push '' and the actual title 
             splitArrTemp.push(temp);
@@ -360,7 +377,6 @@ export function createPostDataMatrix(
     markdownFileNames: string[], 
     htmlFileNames: string[]
     ): string[][] {     
-    let postMatrix: string[][] = [];
     let postData: string[] = [];
 
     for(let i = 0; i < rawMatrixData.length; i++) {
@@ -379,7 +395,9 @@ export function createPostDataMatrix(
         //push html file name to end of each row
         frontmatterMatrixData[i].push(htmlFileNames[i]);
     }
-    
+
+    let postMatrix: string[][] = [];
+
     //assign reference of frontmatterMatrixData to postMatrix
     postMatrix = frontmatterMatrixData;
 
@@ -410,12 +428,73 @@ export function createHtmlPostFiles(directory: string, postDataMatrix: string[][
 /**
  * createHtmlPostListFile function
  * 
+ * @async
  * @param directory The directory to create the file (i.e., `'foo/'`)
  * @param postListTemplate The HTML template with the elements containing the post list
- * @returns Resolved promise for minified post list template
+ * @returns Resolved promise for minified post list template (writes minified template to file)
  */
 export async function createHtmlPostListFile(directory: string, postListTemplate: string): Promise<void> {
     return Promise.resolve(minifyHtml(postListTemplate)).then((minifiedPostListTemplate) => {
         writeToFile(directory, minifiedPostListTemplate);
     });
 }
+
+/**
+ * createHtmlIndexFile function
+ * 
+ * @async
+ * @returns Resolved promise for minified index template (writes minified template to file)
+ */
+export async function createHtmlIndexFile(): Promise<void> {
+    const indexElements: indexElemT = {
+        //stylesheet (index)
+        cssIndexLink: "src/styles/style.css",
+        //hljs stylesheet (index)
+        cssIndexHighlightLink:  "src/styles/hljs/github-dark.min.css",
+        //hljs script (index)
+        jsIndexHighlightLink: "src/html-posts/scripts/highlight.min.js",
+    }
+
+    let template: string = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="${indexElements.cssIndexLink}">
+            <link rel="stylesheet" href="${indexElements.cssIndexHighlightLink}">
+            <script src=${indexElements.jsIndexHighlightLink}></script>
+            <script>hljs.highlightAll();</script>
+            <title></title>
+        </head>
+        <body>
+            <article>
+                ${EvaSTUtil.MDtoHTML_ST(parseFile('posts/index/_index.md'))}
+            </article>
+        </body>
+        </html>`;
+
+    return Promise.resolve(minifyHtml(template)).then((minifiedIndexTemplate) => {
+        writeToFile('index.html', minifiedIndexTemplate);
+    });
+}
+
+//create post data matrix (sorted)
+export const postDataMatrix: string[][] = sortPostDataMatrix(createPostDataMatrix(
+    extractActualFrontmatterData(
+        createRawPostDataMatrix(
+            formatFrontmatterData(
+                getRawFrontmatterData(markdownFiles, 'posts/')
+            ), 
+        'posts/'
+    )), 
+    createRawPostDataMatrix(
+        formatFrontmatterData(
+            getRawFrontmatterData(markdownFiles, 'posts/')
+            ), 
+        'posts/'
+    ),
+    markdownFiles,
+    htmlFiles
+));

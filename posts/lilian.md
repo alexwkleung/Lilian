@@ -3,15 +3,7 @@ title: Lilian
 date: Apr 29, 2023
 ---
 
-# Lilian
-
-Welcome to Lilian.
-
-# Why Lilian?
-
-Lilian offers a minimal and clean experience out of the box.
-
-Features:
+# Features
 
 1. Pages are generated locally.
 
@@ -36,11 +28,12 @@ Features:
 
     3. Create a data structure involving matrices (i.e., multiple 1x3 matrices) that contain the post data (frontmatter, post content, file names). 
 
-    4. Sort the matrix by date (parsed to milliseconds) using **an implemented sorting algorithm** (i.e., bubble sort).
+    4. Sort the matrix by date (parsed to milliseconds for comparison) using **an implemented sorting algorithm** (i.e., bubble sort).
 
-    5. Create HTML template strings (posts, post list, etc). 
+    5. Create HTML template strings (index, posts, post list, etc). 
 
     6. Make sure generated HTML files are minified using html-minifier-terser. Generated HTML files shouldn't be modified directly.
 
     7. Using functions from [fs-dir](https://github.com/alexwkleung/fs-dir) allows executing file system operations with ease. Filtering and removing extensions were helpful.
 
+    In the upcoming updates to Lilian, I plan on refactoring the post util so that it is more efficient. While the parsing speed may not be a concern due to everything done locally, the code is quite inefficient regardless.

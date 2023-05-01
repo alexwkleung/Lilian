@@ -8,7 +8,8 @@
     "clean": "tsc --build --clean",
     "build-c": "npm run clean && npx tsc --build",
     "build": "tsc --build",
-    "lilian": "node dist/lilian.js",
+    "lilian": "npm run build && npm run build-c && node dist/lilian.js",
+    "lilian-v": "npm run build && npm run build-c && node dist/lilian.js && npm run dev",
     "dev": "vite --host"
   },
   "repository": {

@@ -3,46 +3,29 @@ import {
     createPostHtmlTemplate, 
     createHtmlPostListFile, 
     createPostListHtmlTemplate, 
-    getPostListTags, 
-    createHtmlFileNames, 
-    createPostDataMatrix, 
-    createRawPostDataMatrix, 
-    extractActualFrontmatterData, 
-    formatFrontmatterData, 
-    getRawFrontmatterData, 
-    htmlFiles,
-    markdownFiles,
-    markdownFilesNoExt,
-    sortPostDataMatrix
+    getPostListTags,
+    createHtmlIndexFile,
+    postDataMatrix
 } from "./post-util.js";
 
-//create post data matrix (sorted)
-const postDataMatrix = sortPostDataMatrix(createPostDataMatrix(
-    extractActualFrontmatterData(
-        createRawPostDataMatrix(
-            formatFrontmatterData(
-                getRawFrontmatterData(markdownFiles, 'posts/')
-            ), 
-        'posts/'
-    )), 
-    createRawPostDataMatrix(
-        formatFrontmatterData(
-            getRawFrontmatterData(markdownFiles, 'posts/')
-            ), 
-        'posts/'
-    ),
-    markdownFiles,
-    createHtmlFileNames(markdownFilesNoExt)
-));
+try {
+    //create index file
+    createHtmlIndexFile();
 
-//create post files
-createHtmlPostFiles('src/html-posts/', postDataMatrix, createPostHtmlTemplate(postDataMatrix));
+    //create post files
+    createHtmlPostFiles('src/html-posts/', postDataMatrix, createPostHtmlTemplate(postDataMatrix));
 
-//create post list file
-createHtmlPostListFile(
-    'src/post-list/post-list.min.html', 
-    createPostListHtmlTemplate("Lilian", getPostListTags(postDataMatrix, '../html-posts/'))
-);
+    //create post list file
+    createHtmlPostListFile(
+        'src/post-list/post-list.min.html', 
+        createPostListHtmlTemplate("Lilian", getPostListTags(postDataMatrix, '../html-posts/'))
+    );
 
-//console.log(sortPostDataMatrix(postDataMatrix));
-//console.log(postDataMatrix);
+    //once all functions are executed, log success
+    console.log("Lilian: Executed successfully!");
+
+//if some exception is thrown
+} catch(error) {
+    //throw error
+    throw console.error(error);
+}

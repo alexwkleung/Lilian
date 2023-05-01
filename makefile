@@ -17,3 +17,7 @@ lilian:
 .PHONY: dev
 dev:
 	npm run dev
+
+.PHONY: lilian-v
+lilian-v: 
+	npm run lilian-v
