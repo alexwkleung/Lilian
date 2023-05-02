@@ -488,20 +488,22 @@ export async function createHtmlIndexFile(title: string): Promise<void> {
 }
 
 //create post data matrix (sorted)
-export const postDataMatrix: string[][] = sortPostDataMatrix(createPostDataMatrix(
-    extractActualFrontmatterData(
+export const postDataMatrix = (): string[][] => {
+    return sortPostDataMatrix(createPostDataMatrix(
+        extractActualFrontmatterData(
+            createRawPostDataMatrix(
+                formatFrontmatterData(
+                    getRawFrontmatterData(markdownFiles, 'posts/')
+                ),  
+            'posts/'
+        )), 
         createRawPostDataMatrix(
             formatFrontmatterData(
                 getRawFrontmatterData(markdownFiles, 'posts/')
-            ), 
-        'posts/'
-    )), 
-    createRawPostDataMatrix(
-        formatFrontmatterData(
-            getRawFrontmatterData(markdownFiles, 'posts/')
-            ), 
-        'posts/'
-    ),
-    markdownFiles,
-    htmlFiles
-));
+                ),  
+            'posts/'
+        ),
+        markdownFiles,
+        htmlFiles
+    ));
+}

@@ -13,12 +13,12 @@ try {
     createHtmlIndexFile("Lilian");
 
     //create post files
-    createHtmlPostFiles('src/html-posts/', postDataMatrix, createPostHtmlTemplate(postDataMatrix));
+    createHtmlPostFiles('src/html-posts/', postDataMatrix(), createPostHtmlTemplate(postDataMatrix()));
 
     //create post list file
     createHtmlPostListFile(
         'src/post-list/post-list.min.html', 
-        createPostListHtmlTemplate("Posts", getPostListTags(postDataMatrix, '../html-posts/'))
+        createPostListHtmlTemplate("Posts", getPostListTags(postDataMatrix(), '../html-posts/'))
     );
 
     //once all functions are executed, log success
