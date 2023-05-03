@@ -33,7 +33,7 @@ const postElements: postElemT = {
     //stylesheet (post)
     cssPostLink: "../styles/style.css",
     //hljs stylesheet (post)
-    cssPostHighlightLink: "../styles/hljs/github-dark.min.css",
+    cssPostHighlightLink: "../styles/hljs/github.min.css", //options: github.min.css, github-dark.min.css, or github-dark-dimmed.min.css
     //hljs script (post)
     jsPostHighlightLink: "./scripts/highlight.min.js"
 }
@@ -121,7 +121,9 @@ export function createPostListHtmlTemplate(title: string, postListTags: string[]
             </div>
 
             <div id="list-container">
-                ${postListTags.map((i): string => i + '\n').join('')}
+                ${postListTags.map((i): string => { 
+                    return i + '\n'}).join('')
+                }
             </div>
         </body>
         </html>`;
@@ -458,7 +460,7 @@ export async function createHtmlIndexFile(title: string): Promise<void> {
         //stylesheet (index)
         cssIndexLink: "src/styles/style.css",
         //hljs stylesheet (index)
-        cssIndexHighlightLink:  "src/styles/hljs/github-dark.min.css",
+        cssIndexHighlightLink: "src/styles/hljs/github.min.css", //options: github.min.css, github-dark.min.css, or github-dark-dimmed.min.css
         //hljs script (index)
         jsIndexHighlightLink: "src/html-posts/scripts/highlight.min.js",
         //title (index)
