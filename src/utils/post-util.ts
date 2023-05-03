@@ -99,6 +99,9 @@ export function getPostListTags(postData: string[][], directory: string): string
  * @returns An HTML template for post list
  */
 export function createPostListHtmlTemplate(title: string, postListTags: string[]): string {
+    //heading template literal 
+    let headingTemplateLiteral: string = `<h1>Posts</h1>`;
+
     //iterate over array in template literal with map: 
     //https://stackoverflow.com/questions/50574786/simple-javascript-template-literals-to-insert-iterated-values-e-g-array-elemen
 
@@ -114,7 +117,7 @@ export function createPostListHtmlTemplate(title: string, postListTags: string[]
         </head>
         <body>
             <div id="post-list-h1-container">
-                <h1>Posts</h1>
+                ${headingTemplateLiteral}
             </div>
 
             <div id="list-container">
