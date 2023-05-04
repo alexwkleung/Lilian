@@ -492,7 +492,11 @@ export async function createHtmlIndexFile(title: string): Promise<void> {
     });
 }
 
-//create post data matrix (sorted)
+/**
+ * postDataMatrix function 
+ * 
+ * @returns A matrix containing post data
+ */
 export const postDataMatrix = (): string[][] => {
     return sortPostDataMatrix(createPostDataMatrix(
         extractActualFrontmatterData(
@@ -511,4 +515,37 @@ export const postDataMatrix = (): string[][] => {
         markdownFiles,
         htmlFiles
     ));
+}
+
+
+/**
+ * lilian function
+ * 
+ * @param createHtmlIndexFileTitle 
+ * @param createHtmlPostFilesDirectory 
+ * @param createHtmlPostListFileDirectory 
+ * @param createPostListHtmlTemplateTitle 
+ * @param getPostListTagsDirectory 
+ */
+export function lilian(
+    createHtmlIndexFileTitle: string, 
+    createHtmlPostFilesDirectory: string, 
+    createHtmlPostListFileDirectory: string, 
+    createPostListHtmlTemplateTitle: string,
+    getPostListTagsDirectory: string
+    ): void {
+    //create index file
+    createHtmlIndexFile(createHtmlIndexFileTitle);
+
+    //create post files
+    createHtmlPostFiles(createHtmlPostFilesDirectory, postDataMatrix(), createPostHtmlTemplate(postDataMatrix()));
+
+    //create post list file
+    createHtmlPostListFile(
+        createHtmlPostListFileDirectory, 
+        createPostListHtmlTemplate(createPostListHtmlTemplateTitle, getPostListTags(postDataMatrix(), getPostListTagsDirectory))
+    );
+
+    //once all functions are executed, log success
+    console.log("[Lilian]: Executed successfully!");
 }

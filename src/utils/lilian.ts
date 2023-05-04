@@ -1,28 +1,8 @@
-import { 
-    createHtmlPostFiles, 
-    createPostHtmlTemplate, 
-    createHtmlPostListFile, 
-    createPostListHtmlTemplate, 
-    getPostListTags,
-    createHtmlIndexFile,
-    postDataMatrix
-} from "./post-util.js";
+import { lilian } from "./post-util.js"
 
 try {
-    //create index file
-    createHtmlIndexFile("Lilian");
-
-    //create post files
-    createHtmlPostFiles('src/html-posts/', postDataMatrix(), createPostHtmlTemplate(postDataMatrix()));
-
-    //create post list file
-    createHtmlPostListFile(
-        'src/post-list/post-list.min.html', 
-        createPostListHtmlTemplate("Posts", getPostListTags(postDataMatrix(), '../html-posts/'))
-    );
-
-    //once all functions are executed, log success
-    console.log("[Lilian]: Executed successfully!");
+    //call lilian function with arguments
+    lilian("Lilian", 'src/html-posts/', 'src/post-list/post-list.min.html', "Posts", '../html-posts/');
 
 //if some exception is thrown
 } catch(error) {
