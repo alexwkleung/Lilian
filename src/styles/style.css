@@ -14,192 +14,376 @@ This is the only entrypoint for styling your blog using Lilian.
     src: url('./fonts/Inter-Bold.ttf');
 }
 
-/* global */
-body { 
-    background-color: white;
+/* desktop media query */
+@media (min-width: 768px) {
+    /* global */
+    body { 
+        background-color: white;
+    }
+
+    /* index */
+    #index {
+        border: 1px hidden;
+        border-color: black;
+        width: 1050px;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
+
+    /* post */
+
+    article {
+        border-style: 1px hidden;
+        border-color: black;
+        width: 1050px;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
+
+    p {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+    }
+
+    a {
+        color: blue;
+        text-decoration: none;
+        font-family: 'Inter-Regular', sans-serif;
+    }
+
+    pre code {
+        color: black;
+    }
+
+    pre { 
+        color: black;
+    }
+
+    mark {
+        background-color: yellow;
+        color: black;
+    }
+
+    img { 
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: black; 
+        font-family: 'Inter-Bold', sans-serif;
+    }
+
+    h1 {
+        font-size: 35px;
+    }
+
+    ul {
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+        color: black; 
+    }
+
+    ol {
+        font-family: 'Inter-Regular', sans-serif;
+        color: black; 
+        font-size: 17px;
+    }
+
+    details, summary {
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+    }
+
+    blockquote  {
+        border-left: 3px solid black;
+        margin: 1.5em 10px;
+        padding: 0.5em 10px;
+        margin-left: 1.5em;
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+    }
+
+    blockquote:before {
+        color: black; 
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
+
+    blockquote p {
+        display: inline;
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+    }
+
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+        font-size: 17px;
+        color: black; 
+        font-family: 'Inter-Regular', sans-serif;
+        padding: 6px 13px;
+    }
+
+    strong {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+        text-decoration: underline;
+    }
+
+    details summary {
+        cursor: pointer;
+        border-width: 1px;
+        width: auto;
+        height: auto;
+        border-style: solid;
+        border-color:rgb(71, 71, 71);
+        color: black; 
+    }
+
+    details p { 
+        border-width: 1px;
+        width: auto;
+        height: auto;
+        margin: auto;
+        border-style: solid;
+        border-color:rgb(71, 71, 71);
+        color: black; 
+    }
+
+    details summary > * {
+        display: inline;
+    }
+
+    code {
+        font-size: 17px;
+        border-radius: 6px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: rgb(212, 209, 209);
+    }
+
+    /* post list */
+
+    #list-container {
+        border: 1px hidden;
+        border-color: black;
+        width: 500px;
+        margin: 0 auto;
+        overflow-y: scroll;
+        font-family: 'Inter-Regular', sans-serif;   
+        font-size: 19px;
+    }
+
+    .post-li {
+        list-style: none;
+        padding-top: 20px;
+    }
+
+    .post-date {
+        font-size: 15px;
+    }
+
+    #post-list-h1-container {
+        border: 1px hidden;
+        border-color: black;
+        width: 500px;
+        margin: 0 auto;
+        padding-top: 55px;
+        overflow-y: scroll;
+        font-family: 'Inter-Regular', sans-serif;   
+        font-size: 19px;
+    }
 }
 
-/* index */
-#index {
-    border: 1px hidden;
-    border-color: black;
-    width: 1050px;
-    margin: 0 auto;
-    padding-top: 50px;
-}
+/* mobile media query */
+@media (max-width: 768px) {
+    /* global */
+    body { 
+        background-color: white;
+    }
 
-/* post */
+    /* index */
+    #index {
+        border: 1px hidden;
+        border-color: black;
+        width: 350px;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
 
-article {
-    border-style: 1px hidden;
-    border-color: black;
-    width: 1050px;
-    margin: 0 auto;
-    padding-top: 50px;
-}
+    /* post */
 
-p {
-    color: black;
-    font-size: 17px;
-    font-family: 'Inter-Regular', sans-serif;
-}
+    article {
+        border-style: 1px hidden;
+        border-color: black;
+        width: 350px;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
 
-a {
-	color: blue;
-	text-decoration: none;
-    font-family: 'Inter-Regular', sans-serif;
-}
+    p {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+    }
 
-/*
-span { 
-    color: black;
-}
-*/
+    a {
+        color: blue;
+        text-decoration: none;
+        font-family: 'Inter-Regular', sans-serif;
+    }
 
-pre code {
-    color: black;
-}
+    pre code {
+        color: black;
+    }
 
-pre { 
-    color: black;
-}
+    pre { 
+        color: black;
+    }
 
-mark {
-    background-color: yellow;
-    color: black;
-}
+    mark {
+        background-color: yellow;
+        color: black;
+    }
 
-img { 
-    max-width: 100%;
-	max-height: 100%;
-	object-fit: contain;
-}
+    img { 
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
 
-h1, h2, h3, h4, h5, h6 {
-    color: black; 
-    font-family: 'Inter-Bold', sans-serif;
-}
+    h1, h2, h3, h4, h5, h6 {
+        color: black; 
+        font-family: 'Inter-Bold', sans-serif;
+    }
 
-h1 {
-    font-size: 35px;
-}
+    h1 {
+        font-size: 35px;
+    }
 
-ul {
-    font-family: 'Inter-Regular', sans-serif;
-    font-size: 17px;
-    color: black; 
-}
+    ul {
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+        color: black; 
+    }
 
-ol {
-    font-family: 'Inter-Regular', sans-serif;
-    color: black; 
-    font-size: 17px;
-}
+    ol {
+        font-family: 'Inter-Regular', sans-serif;
+        color: black; 
+        font-size: 17px;
+    }
 
-details, summary {
-    font-family: 'Inter-Regular', sans-serif;
-    font-size: 17px;
-}
+    details, summary {
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+    }
 
-blockquote  {
-    border-left: 3px solid black;
-    margin: 1.5em 10px;
-    padding: 0.5em 10px;
-    margin-left: 1.5em;
-    font-family: 'Inter-Regular', sans-serif;
-    font-size: 17px;
-}
+    blockquote  {
+        border-left: 3px solid black;
+        margin: 1.5em 10px;
+        padding: 0.5em 10px;
+        margin-left: 1.5em;
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+    }
 
-blockquote:before {
-    color: black; 
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
-}
+    blockquote:before {
+        color: black; 
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
 
-blockquote p {
-    display: inline;
-    font-family: 'Inter-Regular', sans-serif;
-    font-size: 17px;
-}
+    blockquote p {
+        display: inline;
+        font-family: 'Inter-Regular', sans-serif;
+        font-size: 17px;
+    }
 
-table, th, td {
-    border: 1px solid;
-    border-collapse: collapse;
-    font-size: 17px;
-    color: black; 
-    font-family: 'Inter-Regular', sans-serif;
-    padding: 6px 13px;
-}
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+        font-size: 17px;
+        color: black; 
+        font-family: 'Inter-Regular', sans-serif;
+        padding: 6px 13px;
+    }
 
-strong {
-    color: black;
-    font-size: 17px;
-    font-family: 'Inter-Regular', sans-serif;
-    text-decoration: underline;
-}
+    strong {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+        text-decoration: underline;
+    }
 
-details summary {
-    cursor: pointer;
-    border-width: 1px;
-    width: auto;
-    height: auto;
-    border-style: solid;
-    border-color:rgb(71, 71, 71);
-    color: black; 
-}
+    details summary {
+        cursor: pointer;
+        border-width: 1px;
+        width: auto;
+        height: auto;
+        border-style: solid;
+        border-color:rgb(71, 71, 71);
+        color: black; 
+    }
 
-details p { 
-    border-width: 1px;
-    width: auto;
-    height: auto;
-    margin: auto;
-    border-style: solid;
-    border-color:rgb(71, 71, 71);
-    color: black; 
-}
+    details p { 
+        border-width: 1px;
+        width: auto;
+        height: auto;
+        margin: auto;
+        border-style: solid;
+        border-color:rgb(71, 71, 71);
+        color: black; 
+    }
 
-details summary > * {
-    display: inline;
-}
+    details summary > * {
+        display: inline;
+    }
 
-code {
-    font-size: 17px;
-    border-radius: 6px;
-    padding-left: 5px;
-    padding-right: 5px;
-    background-color: rgb(212, 209, 209);
-}
+    code {
+        font-size: 17px;
+        border-radius: 6px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: rgb(212, 209, 209);
+    }
 
-/* post list */
+    /* post list */
 
-#list-container {
-    border: 1px hidden;
-    border-color: black;
-    width: 500px;
-    margin: 0 auto;
-    overflow-y: scroll;
-    font-family: 'Inter-Regular', sans-serif;   
-    font-size: 19px;
-}
+    #list-container {
+        border: 1px hidden;
+        border-color: black;
+        width: 350px;
+        margin: 0 auto;
+        overflow-y: scroll;
+        font-family: 'Inter-Regular', sans-serif;   
+        font-size: 19px;
+    }
 
-.post-li {
-    list-style: none;
-    padding-top: 20px;
-}
+    .post-li {
+        list-style: none;
+        padding-top: 20px;
+    }
 
-.post-date {
-    font-size: 15px;
-}
+    .post-date {
+        font-size: 15px;
+    }
 
-#post-list-h1-container {
-    border: 1px hidden;
-    border-color: black;
-    width: 500px;
-    margin: 0 auto;
-    padding-top: 55px;
-    overflow-y: scroll;
-    font-family: 'Inter-Regular', sans-serif;   
-    font-size: 19px;
+    #post-list-h1-container {
+        border: 1px hidden;
+        border-color: black;
+        width: 350px;
+        margin: 0 auto;
+        padding-top: 55px;
+        overflow-y: scroll;
+        font-family: 'Inter-Regular', sans-serif;   
+        font-size: 19px;
+    }
 }
