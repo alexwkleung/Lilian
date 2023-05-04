@@ -453,6 +453,7 @@ export async function createHtmlPostListFile(directory: string, postListTemplate
  * createHtmlIndexFile function
  * 
  * @async
+ * @param title Value of title element
  * @returns Resolved promise for minified index template (writes minified template to file)
  */
 export async function createHtmlIndexFile(title: string): Promise<void> {
@@ -521,11 +522,11 @@ export const postDataMatrix = (): string[][] => {
 /**
  * lilian function
  * 
- * @param createHtmlIndexFileTitle 
- * @param createHtmlPostFilesDirectory 
- * @param createHtmlPostListFileDirectory 
- * @param createPostListHtmlTemplateTitle 
- * @param getPostListTagsDirectory 
+ * @param createHtmlIndexFileTitle Document title passed to `createHtmlIndexFile`
+ * @param createHtmlPostFilesDirectory The directory to create the post files passed to `createHtmlPostFilesDirectory`
+ * @param createHtmlPostListFileDirectory The directory to create the post list file passed to `createHtmlPostListFile`
+ * @param createPostListHtmlTemplateTitle Document title passed to `createPostListHtmlTemplate`
+ * @param getPostListTagsDirectory The directory of the HTML files passed to `getPostListTags`
  */
 export function lilian(
     createHtmlIndexFileTitle: string, 
