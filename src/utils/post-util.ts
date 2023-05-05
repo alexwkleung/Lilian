@@ -522,6 +522,8 @@ const postDataMatrix = (): string[][] => {
 /**
  * lilian function
  * 
+ * This is the main function to execute everything necessary to make Lilian work.
+ * 
  * @param createHtmlIndexFileTitle Document title passed to `createHtmlIndexFile`
  * @param createHtmlPostFilesDirectory The directory to create the post files passed to `createHtmlPostFilesDirectory`
  * @param createHtmlPostListFileDirectory The directory to create the post list file passed to `createHtmlPostListFile`
