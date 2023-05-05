@@ -44,7 +44,7 @@ const postElements: postElemT = {
  * @param postData A matrix containing post data
  * @returns Sorted matrix containing post data
  */
-export function sortPostDataMatrix(postData: string[][]): string[][] {
+function sortPostDataMatrix(postData: string[][]): string[][] {
     //use bubble sort algorithm to compare dates
     for(let i = 1; i < postData.length; i++) {
         for(let j = 0; j < postData.length - i; j++) {
@@ -78,7 +78,7 @@ export function sortPostDataMatrix(postData: string[][]): string[][] {
  * @param directory The directory that the HTML files are located in (i.e., `'foo/'`)
  * @returns An array containing list tags with the post title which links to the respective HTML file
  */
-export function getPostListTags(postData: string[][], directory: string): string[] {
+function getPostListTags(postData: string[][], directory: string): string[] {
     let list: string[] = [];
 
     for(let i = 0; i < postData.length; i++) {
@@ -98,7 +98,7 @@ export function getPostListTags(postData: string[][], directory: string): string
  * @param postListTags An array containing post list tags (i.e., `['<li>foo</li>', '<li>bar</li>']`)
  * @returns An HTML template for post list
  */
-export function createPostListHtmlTemplate(title: string, postListTags: string[]): string {
+function createPostListHtmlTemplate(title: string, postListTags: string[]): string {
     //heading template literal 
     let headingTemplateLiteral: string = `<h1>Posts</h1>`;
 
@@ -137,7 +137,7 @@ export function createPostListHtmlTemplate(title: string, postListTags: string[]
  * @param postDataMatrix A matrix containing post data (i.e., `[['title: foo', 'date: bar', '<p>baz</p>']]`)
  * @returns An array containing HTML templates of each post
  */
-export function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
+function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
     let postTitle: string[] = [];
 
     for(let i = 0; i < postDataMatrix.length; i++) {
@@ -184,7 +184,7 @@ export function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
  * @param directory The directory that the Markdown files are located in (i.e., `'foo/'`)
  * @returns An array containing frontmatter data (i.e., `['title: foo\ndate: bar']`)
  */
-export function getRawFrontmatterData(files: string[], directory: string): string[] {
+function getRawFrontmatterData(files: string[], directory: string): string[] {
     let treeRef: string[] = [];
     let treeRefFm: string[] = [];
     
@@ -217,7 +217,7 @@ export function getRawFrontmatterData(files: string[], directory: string): strin
  * @param frontmatterData An array containing frontmatter (i.e., `['title: foo\ndate: bar']`)
  * @returns A matrix containing formatted frontmatter data (i.e., `[['title: foo', 'date: bar']]`)
  */
-export function formatFrontmatterData(frontmatterData: string[]): string[][] {
+function formatFrontmatterData(frontmatterData: string[]): string[][] {
     const fmLength: number = frontmatterData.length;
 
     let matrix: string[][] = [];
@@ -238,7 +238,7 @@ export function formatFrontmatterData(frontmatterData: string[]): string[][] {
  * @param directory The directory that the Markdown files are located in (i.e., `'foo/'`)
  * @returns Matrix containing post data
  */
-export function createRawPostDataMatrix(postMatrix: string[][], directory: string): string[][] {
+function createRawPostDataMatrix(postMatrix: string[][], directory: string): string[][] {
     const postData: string[][] = postMatrix;
 
     let mdFilesIndex: number = 0;
@@ -264,7 +264,7 @@ export function createRawPostDataMatrix(postMatrix: string[][], directory: strin
  * @param postData A matrix containing post data (i.e., `[['title: foo', 'date: bar']]`)
  * @returns A matrix of the actual frontmatter data (i.e., `[['foo', 'bar']]`)
  */
-export function extractActualFrontmatterData(postData: string[][]): string[][] {
+function extractActualFrontmatterData(postData: string[][]): string[][] {
     let createPostMatrixRef: string[][] = postData;
     
     let splitArrTemp: string[][] = [];
@@ -358,7 +358,7 @@ export function extractActualFrontmatterData(postData: string[][]): string[][] {
  * @param fileNameNoExt An array containing file names without extension (i.e., `['foo', 'bar']`)
  * @returns An array containing HTML file names based on Markdown file names (i.e., `['foo.html', 'bar.html']`)
  */
-export function createHtmlFileNames(fileNameNoExt: string[]): string[] {
+function createHtmlFileNames(fileNameNoExt: string[]): string[] {
     let htmlFiles: string[] = [];
 
     for(let i = 0; i < fileNameNoExt.length; i++) {
@@ -381,7 +381,7 @@ export function createHtmlFileNames(fileNameNoExt: string[]): string[] {
  * @param htmlFileNames An array containing HTML file names (i.e., `['foo.html', 'bar.html']`)
  * @returns A matrix containing post data (i.e., `[['title: foo', 'date: bar', '<h1>baz</h1>']]`)
  */
-export function createPostDataMatrix(
+function createPostDataMatrix(
     frontmatterMatrixData: string[][], 
     rawMatrixData: string[][], 
     markdownFileNames: string[], 
@@ -421,7 +421,7 @@ export function createPostDataMatrix(
  * @param directory The directory to create the file (i.e., `'foo/'`)
  * @param postDataMatrix A matrix containing post data (i.e., `[['title: foo', 'date: bar', '<h1>baz</h1>']]`)
  */
-export function createHtmlPostFiles(directory: string, postDataMatrix: string[][], htmlTemplate: string[]): void {
+function createHtmlPostFiles(directory: string, postDataMatrix: string[][], htmlTemplate: string[]): void {
     let htmlTemplateIndex: number = 0;
 
     for(let i = 0; i < postDataMatrix.length; i++) {
@@ -443,7 +443,7 @@ export function createHtmlPostFiles(directory: string, postDataMatrix: string[][
  * @param postListTemplate The HTML template with the elements containing the post list
  * @returns Resolved promise for minified post list template (writes minified template to file)
  */
-export async function createHtmlPostListFile(directory: string, postListTemplate: string): Promise<void> {
+async function createHtmlPostListFile(directory: string, postListTemplate: string): Promise<void> {
     return Promise.resolve(minifyHtml(postListTemplate)).then((minifiedPostListTemplate) => {
         writeToFile(directory, minifiedPostListTemplate);
     });
@@ -456,7 +456,7 @@ export async function createHtmlPostListFile(directory: string, postListTemplate
  * @param title Value of title element
  * @returns Resolved promise for minified index template (writes minified template to file)
  */
-export async function createHtmlIndexFile(title: string): Promise<void> {
+async function createHtmlIndexFile(title: string): Promise<void> {
     const indexElements: indexElemT = {
         //stylesheet (index)
         cssIndexLink: "src/styles/style.css",
@@ -498,7 +498,7 @@ export async function createHtmlIndexFile(title: string): Promise<void> {
  * 
  * @returns A matrix containing post data
  */
-export const postDataMatrix = (): string[][] => {
+const postDataMatrix = (): string[][] => {
     return sortPostDataMatrix(createPostDataMatrix(
         extractActualFrontmatterData(
             createRawPostDataMatrix(
