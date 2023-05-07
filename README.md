@@ -1,4 +1,4 @@
-<h1 align="center">Lilian</h1>
+<h1 align="center">🌼 Lilian</h1>
 
 ![lilian](./screenshots/lilian.png)
 
@@ -11,6 +11,66 @@
 <p align="center">You can create your own minimal blog with very little configuration.</p>
 
 # Installation
+
+Clone the repository.
+
+```bash
+git clone <SSH/HTTPS URL>
+```
+
+Change directory.
+
+```bash
+cd <...>/Lilian
+```
+
+Install npm dependencies
+
+```bash
+npm install
+```
+
+# Setup
+
+1. Run lilian-init. 
+
+```bash
+# via npm
+npm run lilian-init
+
+# or
+
+# via make
+make lilian-init
+```
+
+2. Update `_index.md` in `posts/index` directory to your liking. No frontmatter is necessary for the index, therefore `nil` is the value for each property.
+
+3. Create a post in the root directory of the `posts` Please follow the post template as shown in `post-template.md`, located in `posts/template`. Lilian may not run correctly if your posts are not structured properly.
+
+3. Run Lilian.
+
+```bash
+# via npm
+npm run lilian
+
+# or 
+
+# via make
+make lilian
+```
+
+Run local dev server using Vite.
+
+```bash
+# via npm
+npm run dev
+
+# or 
+
+# via make
+make dev
+```
 
 # Features
 
@@ -46,12 +106,11 @@
 
     7. Using functions from [fs-dir](https://github.com/alexwkleung/fs-dir) allows executing file system operations with ease, such as filtering and removing file extensions.
     
-    I know that these aren't the most optimal solutions but I will be improving the efficiency in the near future.
+    These aren't the most optimal solutions but I will be improving the efficiency in the near future. 
 
 2. Q: Does Lilian offer typical blog features (pagination, post search, rss, etc)?
 
-    A: At the moment, Lilian does not offer pagination, post search, and typical blog features (RSS, user comments, theme switching, etc). While these features are nice to have, Lilian is not meant to be a replacement of [insert site generator/blog util here]. 
-
+    A: At the moment, Lilian does not offer pagination, post search, and typical blog features (RSS, user comments, theme switching, etc). While these features are nice to have, Lilian is not meant to be a replacement of [insert site generator/blog util here]. However, once I find that Lilian's core is stable enough, I will add some of these features in.
 
 # Contributions
 

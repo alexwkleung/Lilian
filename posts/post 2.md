@@ -1,5 +1,5 @@
 ---
-title: A Test Post
+title: Post 2
 date: Sep 26, 2020
 ---
 

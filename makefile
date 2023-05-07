@@ -21,3 +21,7 @@ dev:
 .PHONY: lilian-v
 lilian-v: 
 	npm run lilian-v
+
+.PHONY: lilian-init
+lilian-init: 
+	npm run lilian-init

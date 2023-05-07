@@ -1,13 +1,14 @@
 {
   "name": "lilian",
   "version": "1.0.0",
-  "description": "",
+  "description": "A minimal blog template",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "clean": "tsc --build --clean",
     "build-c": "npm run clean && npx tsc --build",
     "build": "tsc --build",
+    "lilian-init": "rm src/html-posts/*.min.html && rm posts/*.md",
     "lilian": "npm run build && npm run build-c && node dist/lilian.js",
     "lilian-v": "npm run build && npm run build-c && node dist/lilian.js && npm run dev",
     "dev": "vite --host"
@@ -23,13 +24,12 @@
   },
   "homepage": "https://github.com/alexwkleung/Lilian#readme",
   "devDependencies": {
-    "@types/html-minifier-terser": "^7.0.0",
     "typescript": "^5.0.4",
     "vite": "^4.3.3"
   },
   "dependencies": {
     "eva-st-util": "github:alexwkleung/Eva-ST-Util",
     "fs-dir": "github:alexwkleung/fs-dir",
-    "html-minifier-terser": "^7.2.0"
+    "simple-html-minifier-terser": "github:alexwkleung/simple-html-minifier-terser"
   }
 }

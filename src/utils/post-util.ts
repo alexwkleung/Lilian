@@ -1,6 +1,6 @@
 import { EvaSTUtil } from 'eva-st-util'
 import { readDirectory, removeExtension, filterByExtension, parseFile, writeToFile } from 'fs-dir'
-import { minifyHtml } from './minify-html-util.js'
+import { minifyHtml } from 'simple-html-minifier-terser'
 
 //markdown file names (with extension)
 const markdownFiles: string[] = filterByExtension(readDirectory('posts'), ".md");
@@ -35,7 +35,7 @@ const postElements: postElemT = {
     //hljs stylesheet (post)
     cssPostHighlightLink: "../styles/hljs/github.min.css", //options: github.min.css, github-dark.min.css, or github-dark-dimmed.min.css
     //hljs script (post)
-    jsPostHighlightLink: "./scripts/highlight.min.js"
+    jsPostHighlightLink: "../scripts/highlight.min.js"
 }
 
 /**
@@ -87,7 +87,6 @@ function getPostListTags(postData: string[][], directory: string): string[] {
         list.push(temp);
     }
 
-    //return list
     return list;
 }
 
@@ -121,8 +120,9 @@ function createPostListHtmlTemplate(title: string, postListTags: string[]): stri
             </div>
 
             <div id="list-container">
-                ${postListTags.map((i): string => { 
-                    return i + '\n'}).join('')
+                ${postListTags.map((index): string => { 
+                    return index + '\n'
+                }).join('')
                 }
             </div>
         </body>
@@ -190,7 +190,7 @@ function getRawFrontmatterData(files: string[], directory: string): string[] {
     
     //iterate over files
     for(let i of files) {
-        //iterate over tree object
+        //iterate over tree object (frontmatter)
         for(let j of EvaSTUtil.traverseTree_ST(EvaSTUtil.getFrontmatterTree_ST(parseFile(directory + i)), 'yaml')) {
             treeRef.push(j);
         }
@@ -227,7 +227,6 @@ function formatFrontmatterData(frontmatterData: string[]): string[][] {
         matrix.push(frontmatterData[i].split('\n'));
     }
 
-    //return matrix containing frontmatter data
     return matrix;
 }
 
@@ -254,7 +253,6 @@ function createRawPostDataMatrix(postMatrix: string[][], directory: string): str
         }
     }
 
-    //return post data matrix
     return postData;
 }
 
@@ -345,10 +343,9 @@ function extractActualFrontmatterData(postData: string[][]): string[][] {
 
     let actualFmData: string[][] = [];
 
-    //assign reference of noEmptyStr to actualFmTemp
+    //assign reference of actualFmTemp to actualFmData
     actualFmData = actualFmTemp;
 
-    //return array of actual frontmatter data
     return actualFmData;
 }
 

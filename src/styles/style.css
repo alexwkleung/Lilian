@@ -178,6 +178,7 @@ This is the only entrypoint for styling your blog using Lilian.
         overflow-y: scroll;
         font-family: 'Inter-Regular', sans-serif;   
         font-size: 19px;
+        margin-top: -10px;
     }
 
     .post-li {
@@ -365,6 +366,7 @@ This is the only entrypoint for styling your blog using Lilian.
         overflow-y: scroll;
         font-family: 'Inter-Regular', sans-serif;   
         font-size: 19px;
+        margin-top: -10px;
     }
 
     .post-li {

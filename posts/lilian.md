@@ -5,4 +5,4 @@ date: Apr 29, 2023
 
 # Lilian 
 
-Lilian is a minimal blog template.
+Lilian is a minimal blog template. It's nice and simple as well :)
