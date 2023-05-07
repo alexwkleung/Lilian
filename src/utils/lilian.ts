@@ -4,10 +4,10 @@ try {
     //call lilian function with arguments
     lilian(
         "Lilian", 
-        'src/html-posts/', 
+        'src/pages/', 
         'src/post-list/post-list.min.html', 
         "Posts", 
-        '../html-posts/'
+        '../pages/'
     );
 
 //if some exception is thrown

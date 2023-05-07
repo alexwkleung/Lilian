@@ -8,7 +8,7 @@
     "clean": "tsc --build --clean",
     "build-c": "npm run clean && tsc --build",
     "build": "tsc --build",
-    "lilian-init": "rm src/html-posts/*.min.html && rm posts/*.md",
+    "lilian-init": "rm src/pages/*.min.html && rm src/post-list/*.min.html && rm posts/*.md",
     "lilian": "npm run build && npm run build-c && node dist/lilian.js",
     "lilian-v": "npm run build && npm run build-c && node dist/lilian.js && npm run dev",
     "dev": "vite --host"
