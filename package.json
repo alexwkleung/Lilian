@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "clean": "tsc --build --clean",
-    "build-c": "npm run clean && npx tsc --build",
+    "build-c": "npm run clean && tsc --build",
     "build": "tsc --build",
     "lilian-init": "rm src/html-posts/*.min.html && rm posts/*.md",
     "lilian": "npm run build && npm run build-c && node dist/lilian.js",

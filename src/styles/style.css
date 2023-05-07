@@ -131,9 +131,8 @@ This is the only entrypoint for styling your blog using Lilian.
 
     strong {
         color: black;
-        font-size: 17px;
+        font-size: 19px;
         font-family: 'Inter-Regular', sans-serif;
-        text-decoration: underline;
     }
 
     details summary {
@@ -321,7 +320,6 @@ This is the only entrypoint for styling your blog using Lilian.
         color: black;
         font-size: 17px;
         font-family: 'Inter-Regular', sans-serif;
-        text-decoration: underline;
     }
 
     details summary {

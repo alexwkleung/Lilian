@@ -10,6 +10,20 @@
 
 <p align="center">You can create your own minimal blog with very little configuration.</p>
 
+# Table of Contents
+
+1. [Installation](#installation)
+
+2. [Setup](#setup)
+
+3. [Features](#features)
+
+4. [Frequently Asked Questions](#frequently-asked-questions)
+
+5. [Contributions](#contributions)
+
+6. [License](#license)
+
 # Installation
 
 Clone the repository.
@@ -32,7 +46,7 @@ npm install
 
 # Setup
 
-1. Run lilian-init. 
+1. Run lilian-init. This will do a basic clean up of files (not including `_index.md`).
 
 ```bash
 # via npm
@@ -46,7 +60,7 @@ make lilian-init
 
 2. Update `_index.md` in `posts/index` directory to your liking. No frontmatter is necessary for the index, therefore `nil` is the value for each property.
 
-3. Create a post in the root directory of the `posts` Please follow the post template as shown in `post-template.md`, located in `posts/template`. Lilian may not run correctly if your posts are not structured properly.
+3. Create a post in the root directory of the `posts` Please follow the post template as shown in `post-template.md`, located in `posts/template`. Lilian will throw errors if your posts are not structured correctly.
 
 3. Run Lilian.
 
@@ -72,6 +86,8 @@ npm run dev
 make dev
 ```
 
+**Note:** All HTML files are minified, so you have to edit the contents in the respective `.md` files or the template literals in `createPostListHtmlTemplate()` and/or `createPostHtmlTemplate()` functions within `src/post-util.ts`.
+
 # Features
 
 1. Pages are generated locally.
@@ -79,18 +95,20 @@ make dev
 2. Perfect amount of simplicity:
 
 - [Inter](https://github.com/rsms/inter) font
-- No distractions, no heavy dependencies
+- No UI distractions, no heavy dependencies
 - Default theme leaves room for customization
 - Comfortable default font size for reading
-- Comfortable default mobile and desktop media queries
+- Comfortable default mobile and desktop styles
 
 # Frequently Asked Questions
+
+The FAQ will be updated periodically.
 
 1. Q: I know Lilian is a blog template, but how does it work without utilizing a site generator or framework?
 
     A: Lilian is powered using a handful of utilities that are executed locally. You can find them in `src/utils`.
     
-    Here is how these utilities work (in no particular order):
+    Here is a gist of how these utilities work (in no particular order):
     
     1. Using functions from [Eva-ST-Util](https://github.com/alexwkleung/Eva-ST-Util) allows you to work with Markdown, such as manipulating the AST. Also, the string from Markdown -> HTML is used later.
     
@@ -106,11 +124,11 @@ make dev
 
     7. Using functions from [fs-dir](https://github.com/alexwkleung/fs-dir) allows executing file system operations with ease, such as filtering and removing file extensions.
     
-    These aren't the most optimal solutions but I will be improving the efficiency in the near future. 
+    These aren't the most optimal solutions but I will be improving the efficiency in the near future. Of course, this will change over time and I'll be sure to update this list.
 
-2. Q: Does Lilian offer typical blog features (pagination, post search, rss, etc)?
+2. Q: Does Lilian offer blog features such as pagination, post search, RSS, etc?
 
-    A: At the moment, Lilian does not offer pagination, post search, and typical blog features (RSS, user comments, theme switching, etc). While these features are nice to have, Lilian is not meant to be a replacement of [insert site generator/blog util here]. However, once I find that Lilian's core is stable enough, I will add some of these features in.
+    A: At the moment, Lilian does not offer pagination, post search, RSS, user comments, theme switching, etc. While these features are nice to have, Lilian is not meant to be a replacement of [insert site generator/blog util here]. However, once Lilian's core is more stable, I will add some of these features in as additional utilities.
 
 # Contributions
 
