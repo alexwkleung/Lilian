@@ -2,7 +2,7 @@
   "name": "lilian",
   "version": "1.0.0",
   "description": "A minimal blog template",
-  "main": "index.js",
+  "main": "dist/lilian.js",
   "type": "module",
   "scripts": {
     "clean": "tsc --build --clean",
