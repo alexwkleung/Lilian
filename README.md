@@ -26,13 +26,13 @@
 
 # Installation
 
-Clone the repository.
+Clone the repository
 
 ```bash
 git clone <SSH/HTTPS URL>
 ```
 
-Change directory.
+Change directory
 
 ```bash
 cd <...>/Lilian
@@ -60,7 +60,7 @@ make lilian-init
 
 2. Update `_index.md` in `posts/index` directory to your liking. No frontmatter is necessary for the index, therefore `nil` is the value for each property.
 
-3. Create a post in the root directory of the `posts` Please follow the post template as shown in `post-template.md`, located in `posts/template`. Lilian will throw errors if your posts are not structured correctly.
+3. Create a post in the root directory of `posts`. Please follow the post template as shown in `post-template.md`, located in `posts/template`. Lilian will throw errors if your posts are not structured correctly.
 
 3. Run Lilian.
 
