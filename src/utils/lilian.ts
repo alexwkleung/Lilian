@@ -10,7 +10,7 @@ try {
         '../pages/'
     );
 
-//if some exception is thrown
+//catch the exception that is thrown
 } catch(error) {
     //throw error
     throw console.error(error);

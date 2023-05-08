@@ -460,7 +460,7 @@ async function createHtmlIndexFile(title: string): Promise<void> {
         //hljs stylesheet (index)
         cssIndexHighlightLink: "src/styles/hljs/github.min.css", //options: github.min.css, github-dark.min.css, or github-dark-dimmed.min.css
         //hljs script (index)
-        jsIndexHighlightLink: "src/html-posts/scripts/highlight.min.js",
+        jsIndexHighlightLink: "src/scripts/highlight.min.js",
         //title (index)
         title: title
     }
