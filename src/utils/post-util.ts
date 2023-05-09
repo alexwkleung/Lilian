@@ -53,7 +53,7 @@ function sortPostDataMatrix(postData: string[][]): string[][] {
             //date order from latest to oldest
             if(Date.parse(postData[j][1]) < Date.parse(postData[j + 1][1])) {
                 //set current row to temp
-                let temp: string[] = postData[j];
+                const temp: string[] = postData[j];
     
                 //assign next row to current row --> (swap)
                 postData[j] = postData[j + 1];
@@ -79,10 +79,10 @@ function sortPostDataMatrix(postData: string[][]): string[][] {
  * @returns An array containing list tags with the post title which links to the respective HTML file
  */
 function getPostListTags(postData: string[][], directory: string): string[] {
-    let list: string[] = [];
+    const list: string[] = [];
 
     for(let i = 0; i < postData.length; i++) {
-        let temp: string = `<li class="post-li"><a class="post-link" href="${directory}${postData[i][4]}">${postData[i][0]}</a><br><div class="post-date">${postData[i][1]}</div></li>`;
+        const temp = `<li class="post-li"><a class="post-link" href="${directory}${postData[i][4]}">${postData[i][0]}</a><br><div class="post-date">${postData[i][1]}</div></li>`;
 
         list.push(temp);
     }
@@ -99,12 +99,12 @@ function getPostListTags(postData: string[][], directory: string): string[] {
  */
 function createPostListHtmlTemplate(title: string, postListTags: string[]): string {
     //heading template literal 
-    let headingTemplateLiteral: string = `<h1>Posts</h1>`;
+    const headingTemplateLiteral = `<h1>Posts</h1>`;
 
     //iterate over array in template literal with map: 
     //https://stackoverflow.com/questions/50574786/simple-javascript-template-literals-to-insert-iterated-values-e-g-array-elemen
 
-    let template: string = `
+    const template = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -138,19 +138,19 @@ function createPostListHtmlTemplate(title: string, postListTags: string[]): stri
  * @returns An array containing HTML templates of each post
  */
 function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
-    let postTitle: string[] = [];
+    const postTitle: string[] = [];
 
     for(let i = 0; i < postDataMatrix.length; i++) {
         postTitle.push(postDataMatrix[i][0]);
     }
 
-    let postData: string[] = [];
+    const postData: string[] = [];
 
     for(let i = 0; i < postDataMatrix.length; i++) {
         postData.push(postDataMatrix[i][2]);
     }
 
-    let template: string[] = [];
+    const template: string[] = [];
 
     for(let i = 0; i < postTitle.length && i < postData.length; i++) {
         template.push(`
@@ -185,19 +185,19 @@ function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
  * @returns An array containing frontmatter data (i.e., `['title: foo\ndate: bar']`)
  */
 function getRawFrontmatterData(files: string[], directory: string): string[] {
-    let treeRef: string[] = [];
-    let treeRefFm: string[] = [];
+    const treeRef: string[] = [];
+    const treeRefFm: string[] = [];
     
     //iterate over files
-    for(let i of files) {
+    for(const i of files) {
         //iterate over tree object (frontmatter)
-        for(let j of EvaSTUtil.traverseTree_ST(EvaSTUtil.getFrontmatterTree_ST(parseFile(directory + i)), 'yaml')) {
+        for(const j of EvaSTUtil.traverseTree_ST(EvaSTUtil.getFrontmatterTree_ST(parseFile(directory + i)), 'yaml')) {
             treeRef.push(j);
         }
     }
 
     //index to track the frontmatter data position in the tree
-    let frontmatterIndex: number = 1;
+    let frontmatterIndex = 1;
 
     //iterate over the length of files (each file has frontmatter data)
     for(let i = 0; i < files.length; i++) {
@@ -220,7 +220,7 @@ function getRawFrontmatterData(files: string[], directory: string): string[] {
 function formatFrontmatterData(frontmatterData: string[]): string[][] {
     const fmLength: number = frontmatterData.length;
 
-    let matrix: string[][] = [];
+    const matrix: string[][] = [];
 
     for(let i = 0; i < fmLength; i++) {
         //split index value of string containing '\n'
@@ -240,7 +240,7 @@ function formatFrontmatterData(frontmatterData: string[]): string[][] {
 function createRawPostDataMatrix(postMatrix: string[][], directory: string): string[][] {
     const postData: string[][] = postMatrix;
 
-    let mdFilesIndex: number = 0;
+    let mdFilesIndex = 0;
 
     //iterate over matrix rows
     for(let i = 0; i < postData.length; i++) {
@@ -263,24 +263,24 @@ function createRawPostDataMatrix(postMatrix: string[][], directory: string): str
  * @returns A matrix of the actual frontmatter data (i.e., `[['foo', 'bar']]`)
  */
 function extractActualFrontmatterData(postData: string[][]): string[][] {
-    let createPostMatrixRef: string[][] = postData;
+    const createPostMatrixRef: string[][] = postData;
     
-    let splitArrTemp: string[][] = [];
-    let splitArr: string[][] = [];
+    const splitArrTemp: string[][] = [];
+    const splitArr: string[][] = [];
 
     for(let i = 0; i < createPostMatrixRef.length; i++) {
         //frontmatter data is only title and date, therefore iterate 2 times
         for(let j = 0; j < 2; j++) {
             //split index value of string containing 'title: ' 
-            let temp: string[] = createPostMatrixRef[i][j].split('title:' + ' ');
+            const temp: string[] = createPostMatrixRef[i][j].split('title:' + ' ');
 
             //push '' and the actual title 
             splitArrTemp.push(temp);
         }
     }
 
-    let noEmptyStrTemp: string[] = [];
-    let noEmptyStr: string[] = [];
+    const noEmptyStrTemp: string[] = [];
+    const noEmptyStr: string[] = [];
 
     for(let i = 0; i < splitArrTemp.length; i++) {
         for(let j = 0; j < splitArrTemp[i].length; j++) {
@@ -295,7 +295,7 @@ function extractActualFrontmatterData(postData: string[][]): string[][] {
     for(let i = 0; i < splitArrTemp.length; i++) {
         for(let j = 0; j < splitArrTemp[i].length; j++) {
             //split index value of string containing 'date: '
-            let temp: string[] = splitArrTemp[i][j].split('date:' + ' ');
+            const temp: string[] = splitArrTemp[i][j].split('date:' + ' ');
 
             //push '' and the actual title
             splitArr.push(temp);
@@ -312,12 +312,12 @@ function extractActualFrontmatterData(postData: string[][]): string[][] {
         }
     }
 
-    let actualFmTemp: string[][] = [];
+    const actualFmTemp: string[][] = [];
 
     for(let i = 0; i < noEmptyStr.length; i++) {
         //go to title index value and skip the date index value
         if(i % 2 === 0) {
-            let temp: string[] = [];
+            const temp: string[] = [];
             temp.push(noEmptyStr[i]);
 
             //push frontmatter title value to end of array
@@ -325,7 +325,7 @@ function extractActualFrontmatterData(postData: string[][]): string[][] {
         }
     }
 
-    let dateFm: string[] = [];
+    const dateFm: string[] = [];
 
     for(let i = 0; i < noEmptyStr.length; i++) {
         //skip the title index value and to go date index value
@@ -356,7 +356,7 @@ function extractActualFrontmatterData(postData: string[][]): string[][] {
  * @returns An array containing HTML file names based on Markdown file names (i.e., `['foo.html', 'bar.html']`)
  */
 function createHtmlFileNames(fileNameNoExt: string[]): string[] {
-    let htmlFiles: string[] = [];
+    const htmlFiles: string[] = [];
 
     for(let i = 0; i < fileNameNoExt.length; i++) {
         //assigned value to temp is markdown file name + concatenated .min.html extension
@@ -384,7 +384,7 @@ function createPostDataMatrix(
     markdownFileNames: string[], 
     htmlFileNames: string[]
     ): string[][] {     
-    let postData: string[] = [];
+    const postData: string[] = [];
 
     for(let i = 0; i < rawMatrixData.length; i++) {
         //push post content from rawMatrixData to postData
@@ -419,7 +419,7 @@ function createPostDataMatrix(
  * @param postDataMatrix A matrix containing post data (i.e., `[['title: foo', 'date: bar', '<h1>baz</h1>']]`)
  */
 function createHtmlPostFiles(directory: string, postDataMatrix: string[][], htmlTemplate: string[]): void {
-    let htmlTemplateIndex: number = 0;
+    let htmlTemplateIndex = 0;
 
     for(let i = 0; i < postDataMatrix.length; i++) {
         if(htmlTemplateIndex < htmlTemplate.length) {
@@ -465,7 +465,7 @@ async function createHtmlIndexFile(title: string): Promise<void> {
         title: title
     }
 
-    let template: string = `
+    const template = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
