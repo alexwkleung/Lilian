@@ -194,7 +194,7 @@ This is the only entrypoint for styling your blog using Lilian.
         border-color: black;
         width: 500px;
         margin: 0 auto;
-        padding-top: 92px;
+        padding-top: 55px;
         overflow-y: scroll;
         font-family: 'Inter-Regular', sans-serif;   
         font-size: 19px;
