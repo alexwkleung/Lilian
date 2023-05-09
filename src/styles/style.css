@@ -98,23 +98,22 @@ This is the only entrypoint for styling your blog using Lilian.
     }
 
     blockquote  {
-        border-left: 3px solid black;
-        margin: 1.5em 10px;
+        border-left: 3px solid #909090;
+        margin: 1.5em 2px;
         padding: 0.5em 10px;
-        margin-left: 1.5em;
         font-family: 'Inter-Regular', sans-serif;
         font-size: 17px;
     }
 
     blockquote:before {
-        color: black; 
+        color: #c1c1c1; 
         font-size: 4em;
         line-height: 0.1em;
-        margin-right: 0.25em;
         vertical-align: -0.4em;
     }
 
     blockquote p {
+        color: #909090;
         display: inline;
         font-family: 'Inter-Regular', sans-serif;
         font-size: 17px;
@@ -285,23 +284,22 @@ This is the only entrypoint for styling your blog using Lilian.
     }
 
     blockquote  {
-        border-left: 3px solid black;
-        margin: 1.5em 10px;
+        border-left: 3px solid #909090;
+        margin: 1.5em 2px;
         padding: 0.5em 10px;
-        margin-left: 1.5em;
         font-family: 'Inter-Regular', sans-serif;
         font-size: 17px;
     }
 
     blockquote:before {
-        color: black; 
+        color: #c1c1c1; 
         font-size: 4em;
         line-height: 0.1em;
-        margin-right: 0.25em;
         vertical-align: -0.4em;
     }
 
     blockquote p {
+        color: #909090;
         display: inline;
         font-family: 'Inter-Regular', sans-serif;
         font-size: 17px;
