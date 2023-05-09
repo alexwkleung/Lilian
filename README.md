@@ -46,7 +46,7 @@ npm install
 
 # Setup
 
-1. Run lilian-init. This will do a basic clean up of files (not including `_index.md`).
+1. Run lilian-init. This will do a basic clean up of files (not including `_index.md` and `index.html`).
 
 ```bash
 # via npm
