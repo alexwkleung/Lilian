@@ -35,8 +35,8 @@ This is the only entrypoint for styling your blog using Lilian.
     article {
         border-style: 1px hidden;
         border-color: black;
-        width: 1050px;
-        margin: 0 auto;
+        width: 648px;
+        margin: 48px 883px;
         padding-top: 50px;
     }
 
@@ -177,7 +177,7 @@ This is the only entrypoint for styling your blog using Lilian.
         overflow-y: scroll;
         font-family: 'Inter-Regular', sans-serif;   
         font-size: 19px;
-        margin-top: -10px;
+        margin-top: -15px;
     }
 
     .post-li {
@@ -194,7 +194,7 @@ This is the only entrypoint for styling your blog using Lilian.
         border-color: black;
         width: 500px;
         margin: 0 auto;
-        padding-top: 55px;
+        padding-top: 92px;
         overflow-y: scroll;
         font-family: 'Inter-Regular', sans-serif;   
         font-size: 19px;
