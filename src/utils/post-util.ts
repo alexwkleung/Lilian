@@ -120,8 +120,8 @@ function createPostListHtmlTemplate(title: string, postListTags: string[]): stri
             </div>
 
             <div id="list-container">
-                ${postListTags.map((index): string => { 
-                    return index + '\n'
+                ${postListTags.map((props): string => { 
+                    return props + '\n'
                 }).join('')
                 }
             </div>

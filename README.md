@@ -126,9 +126,11 @@ The FAQ will be updated periodically.
     
     These aren't the most optimal solutions but I will be improving the efficiency in the near future. Of course, this will change over time and I'll be sure to update this list.
 
-2. Q: Does Lilian offer blog features such as pagination, post search, RSS, etc?
+    Reinventing the wheel isn't the most ideal, however I personally think it's a good challenge.
 
-    A: At the moment, Lilian does not offer pagination, post search, RSS, user comments, theme switching, etc. While these features are nice to have, Lilian is not meant to be a replacement of [insert site generator/blog util here]. However, once Lilian's core is more stable, I plan on adding these features as additional utilities that can be imported into `post-util.ts`.
+2. Q: Does Lilian offer blog features such as pagination, post search, RSS, Table of Contents, etc?
+
+    A: At the moment, Lilian does not offer pagination, post search, RSS, user comments, theme switching, etc. While these features are nice to have, Lilian is not meant to be a replacement of [insert site generator/blog util here]. However, once Lilian's core is more stable, I plan on adding more features as additional utilities that can be imported into `post-util.ts`.
 
 # Contributions
 
