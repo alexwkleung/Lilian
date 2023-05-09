@@ -36,7 +36,7 @@ This is the only entrypoint for styling your blog using Lilian.
         border-style: 1px hidden;
         border-color: black;
         width: 648px;
-        margin: 48px 883px;
+        margin: 0px auto;
         padding-top: 50px;
     }
 
