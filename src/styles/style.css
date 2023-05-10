@@ -44,6 +44,7 @@ This is the only entrypoint for styling your blog using Lilian.
         color: black;
         font-size: 17px;
         font-family: 'Inter-Regular', sans-serif;
+        padding-top: 5px;
     }
 
     a {
@@ -198,6 +199,35 @@ This is the only entrypoint for styling your blog using Lilian.
         font-family: 'Inter-Regular', sans-serif;   
         font-size: 19px;
     }
+
+    /* post */
+    .post-h1 {
+        font-size: 35px;
+    }
+
+    #post-date-article {
+        color: black;
+        font-size: 12px;
+        font-family: 'Inter-Regular', sans-serif;
+        position: absolute;
+        padding-top: 90px;
+    }
+
+    #post-data {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+        padding-top: 5px;
+        margin-top: 30px;
+    }
+
+    #post-data-index {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+        padding-top: 5px;
+        margin-top: -25px;
+    }
 }
 
 /* mobile media query */
@@ -230,6 +260,7 @@ This is the only entrypoint for styling your blog using Lilian.
         color: black;
         font-size: 17px;
         font-family: 'Inter-Regular', sans-serif;
+        padding-top: 5px;
     }
 
     a {
@@ -383,5 +414,34 @@ This is the only entrypoint for styling your blog using Lilian.
         overflow-y: scroll;
         font-family: 'Inter-Regular', sans-serif;   
         font-size: 19px;
+    }
+
+    /* post */
+    .post-h1 {
+        font-size: 35px;
+    }
+    
+    #post-date-article {
+        color: black;
+        font-size: 12px;
+        font-family: 'Inter-Regular', sans-serif;
+        position: absolute;
+        padding-top: 90px;
+    }
+    
+    #post-data {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+        padding-top: 5px;
+        margin-top: 30px;
+    }
+
+    #post-data-index {
+        color: black;
+        font-size: 17px;
+        font-family: 'Inter-Regular', sans-serif;
+        padding-top: 5px;
+        margin-top: -25px;
     }
 }

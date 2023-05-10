@@ -3,8 +3,6 @@ title: Post 2
 date: Sep 26, 2020
 ---
 
-# Heading 1
-
 A paragraph.
 
 Lorem Ipsum.
@@ -44,6 +42,8 @@ Fusce ut risus consectetur, luctus nulla vel, dignissim nisl. Vestibulum a finib
 Nunc diam mi, ultrices ac nisi non, commodo egestas ipsum. Nullam vehicula vel odio at facilisis. Aenean tempus vitae mi eget aliquam. Cras id odio mi. Nulla ac leo ligula. Pellentesque interdum magna eu faucibus condimentum. Donec eu porttitor neque. Vivamus sed arcu laoreet, cursus elit a, dapibus ipsum. Curabitur at feugiat tortor, fringilla lacinia dolor. Nullam ac turpis mattis tortor sodales facilisis nec in purus. Cras aliquam ex sem, eget dapibus lectus congue eu. Suspendisse dui elit, consequat quis orci bibendum, rhoncus fringilla nisl. Fusce sed venenatis sem.
 
 In viverra nisl at nibh imperdiet feugiat. Vivamus quis consectetur sem, in vehicula neque. Curabitur pulvinar, dolor quis tristique suscipit, eros sapien finibus elit, vel lacinia est justo ut massa. Donec cursus consectetur fringilla. Cras condimentum, arcu nec porttitor convallis, nisi massa aliquam massa, non scelerisque dui lacus eu augue. Fusce nibh dolor, condimentum in lobortis eu, euismod eget urna. Praesent pretium, justo in placerat mollis, odio nibh ullamcorper purus, ut vestibulum lectus magna in sapien.
+
+# Heading 
 
 - Foo
 

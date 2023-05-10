@@ -1,9 +1,7 @@
 ---
-title: nil
+title: Lilian
 date: nil
 ---
-
-# Lilian
 
 Welcome to Lilian, a minimal blog template.
 

@@ -146,14 +146,17 @@ function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
 
     const postData: string[] = [];
 
+    const postDates: string[] = [];
+
     for(let i = 0; i < postDataMatrix.length; i++) {
-        postData.push(postDataMatrix[i][2]);
+        postData.push(postDataMatrix[i][2]);  
+        postDates.push(postDataMatrix[i][1]);
     }
 
     const template: string[] = [];
 
     for(let i = 0; i < postTitle.length && i < postData.length; i++) {
-        template.push(`
+        const temp = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -168,10 +171,16 @@ function createPostHtmlTemplate(postDataMatrix: string[][]): string[] {
         </head>
         <body>
             <article>
+                <div id="post-date-article">${postDates[i]}</div>
+                <h1 class="post-h1">${postTitle[i]}</h1>
+                <p id="post-data">
                 ${postData[i]}
+                </p>
             <article>
         </body>
-        </html>`);
+        </html>`;
+
+        template.push(temp);
     }
 
     return template;
@@ -480,7 +489,10 @@ async function createHtmlIndexFile(title: string): Promise<void> {
         </head>
         <body>
             <article>
+            <h1 class="post-h1">${indexElements.title}</h1>
+            <p id="post-data-index">
                 ${EvaSTUtil.MDtoHTML_ST(parseFile('posts/index/_index.md'))}
+            </p>
             </article>
         </body>
         </html>`;

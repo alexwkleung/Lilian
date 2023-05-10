@@ -58,7 +58,7 @@ npm run lilian-init
 make lilian-init
 ```
 
-2. Update `_index.md` in `posts/index` directory to your liking. No frontmatter is necessary for the index, therefore `nil` is the value for each property.
+2. Update `_index.md` in `posts/index` directory to your liking. The date property for the frontmatter is `nil` for the index.
 
 3. Create a post in the root directory of `posts`. Please follow the post template as shown in `post-template.md`, located in `posts/template` directory. Lilian will throw errors if your posts are not structured correctly.
 
