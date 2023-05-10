@@ -1,6 +1,6 @@
 {
   "name": "lilian",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A minimal blog template",
   "main": "dist/lilian.js",
   "type": "module",
